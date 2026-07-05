@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aril — Generative market intelligence</title>
+  <meta name="description" content="A fittable, inspectable theory of markets. Real data in, explainable signals out — built to be audited, not believed.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+
+<nav>
+  <div class="logo">Aril</div>
+  <ul>
+    <li><a href="#idea">The idea</a></li>
+    <li><a href="#machine">The machine</a></li>
+    <li><a href="#map">System map</a></li>
+    <li><a href="#honesty">What we know</a></li>
+    <li><a href="#products">Products</a></li>
+  </ul>
+  <a class="cta-nav" href="#contact">Get in touch</a>
+</nav>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="badge-pre">Pre-launch · 2026</div>
+    <h1>Markets have <span class="accent">internals</span>. We fit them.</h1>
+    <p class="tagline">
+      MarketSim is a generative analysis stack that models how prices actually form —
+      from a population of traders clearing through an exchange — then distills what it learns
+      into fair-value estimates and plain-English rules you can inspect.
+    </p>
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="num">~1,000</span>
+        <span class="lbl">US equities · daily</span>
+      </div>
+      <div class="stat">
+        <span class="num">10</span>
+        <span class="lbl">Crypto pairs · intraday</span>
+      </div>
+      <div class="stat">
+        <span class="num">545</span>
+        <span class="lbl">Live predictions scored</span>
+      </div>
+      <div class="stat">
+        <span class="num">$50</span>
+        <span class="lbl">CPU to fit the core model</span>
+      </div>
+    </div>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#map">Explore the system map ↓</a>
+      <a class="btn btn-ghost" href="#honesty">See what's proven</a>
+    </div>
+  </div>
+</section>
+
+<section class="pillars" id="idea">
+  <div class="wrap">
+    <div class="section-label">The idea</div>
+    <h2>Price is a shadow, not a series</h2>
+    <div class="meander"></div>
+    <p class="lead">
+      Most models learn price directly — and inherit all the opacity that comes with it.
+      We invert the problem: fit the <em>population</em> of traders and the mechanism that clears them,
+      then read price as output. The internals fall out as reusable signal.
+    </p>
+    <div class="flow-strip">
+      <span class="flow-node">Real data</span>
+      <span class="flow-arr">→</span>
+      <span class="flow-node highlight">Agent simulation</span>
+      <span class="flow-arr">+</span>
+      <span class="flow-node highlight">Learned encoder</span>
+      <span class="flow-arr">→</span>
+      <span class="flow-node">Fair-value cloud</span>
+      <span class="flow-arr">→</span>
+      <span class="flow-node">Explainable rules</span>
+      <span class="flow-arr">→</span>
+      <span class="flow-node">Products</span>
+    </div>
+    <div class="pillar-grid">
+      <div class="pillar">
+        <div class="icon">01 · GENERATIVE</div>
+        <h3>Two engines, one world-model</h3>
+        <p>
+          <strong>FastPop</strong> grows thousands of trader personalities that compete on a simulated exchange.
+          <strong>UMarketSim</strong> reads the same dashboard and produces calibrated probability clouds.
+          They warm-start each other — simulation feeds learning, learning feeds simulation.
+        </p>
+      </div>
+      <div class="pillar">
+        <div class="icon">02 · EXPLAINABLE</div>
+        <h3>Rules, not black boxes</h3>
+        <p>
+          After a simulation run, we extract what the winning traders actually did — as readable rules.
+          "Buy what's cheap versus fair value. Don't pile onto a position you're already deep in."
+          Nobody programmed that in. It emerged.
+        </p>
+      </div>
+      <div class="pillar">
+        <div class="icon">03 · AUDITABLE</div>
+        <h3>Rigor is the product</h3>
+        <p>
+          Future data cannot leak backward. Trading costs are charged. Baselines are compared.
+          When a hypothesis fails — our 15-minute crypto calls were a coin-flip at 49.9% — we write it down
+          and kill it. The willingness to disprove ourselves is the whole point.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pillars" id="machine" style="padding-top:0">
+  <div class="wrap">
+    <div class="section-label">The machine</div>
+    <h2>Differentiable physics, honest forward pass</h2>
+    <div class="meander"></div>
+    <p class="lead">
+      Don't learn the world from scratch — learn the deviations from a mechanism you already trust.
+      Order-book matching is the structural prior. Small neural networks fill the gap.
+    </p>
+    <div class="pillar-grid">
+      <div class="pillar">
+        <h3>Simulated crowd</h3>
+        <p>
+          Market-makers, trend-chasers, bargain-hunters, institutions, noise traders — each with its own
+          decision network. When they trade against each other, realistic fingerprints emerge:
+          fat tails, volatility clustering, calm-then-storm dynamics. Without being told to.
+        </p>
+      </div>
+      <div class="pillar">
+        <h3>Reality-matching dials</h3>
+        <p>
+          A handful of knobs — jumpiness, correlation, trend strength — auto-tune until the simulation's
+          stylized facts match real market data. We fixed a subtle measurement bug that had been letting
+          random luck masquerade as improvement.
+        </p>
+      </div>
+      <div class="pillar">
+        <h3>Probability cloud</h3>
+        <p>
+          From recent history, the encoder produces not a single guess but a calibrated range:
+          where something should be worth, and how confident the model is. When it says 90%, we checked —
+          it actually means about 90%.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="map-section" id="map">
+  <div class="wrap-wide">
+    <div class="section-label">System map</div>
+    <h2>From raw data to deliverables — every box is clickable</h2>
+    <div class="meander"></div>
+    <p class="lead">
+      This is the full stack, laid out honestly. Hover any node to trace what feeds it.
+      Click to pin details. Every box is color-dotted by maturity — green means tested and held up,
+      gray means designed but not built yet.
+    </p>
+    <div class="map-frame-wrap">
+      <iframe src="system-map.html" title="MarketSim interactive system map" loading="lazy"></iframe>
+      <div class="map-caption">
+        <span>Interactive · drag nodes · scroll to zoom · toggle groups in the legend</span>
+        <a href="system-map.html" target="_blank" rel="noopener">Open full screen →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="honesty" id="honesty">
+  <div class="wrap">
+    <div class="section-label">What we know</div>
+    <h2>Built to be checked, not sold</h2>
+    <div class="meander"></div>
+    <p class="lead">
+      We don't ask you to believe a number. We show you the process, the tests, and the failures.
+      Here's an honest snapshot of where things stand today.
+    </p>
+
+    <div class="maturity-bar">
+      <span style="width:28%;background:var(--long)" title="Proven"></span>
+      <span style="width:32%;background:var(--signal)" title="Working"></span>
+      <span style="width:12%;background:var(--heat)" title="Early"></span>
+      <span style="width:28%;background:var(--muted)" title="Planned"></span>
+    </div>
+    <div class="maturity-legend">
+      <span><span class="status-dot proven"></span> 5 proven</span>
+      <span><span class="status-dot working"></span> 11 working</span>
+      <span><span class="status-dot early"></span> 2 early</span>
+      <span><span class="status-dot planned"></span> 5 planned</span>
+    </div>
+
+    <div class="honesty-grid">
+      <div class="honesty-card proven">
+        <h3><span class="status-dot proven"></span> Earnings shocks are real</h3>
+        <p>
+          We measured it on real data: earnings announcements roughly double a stock's next-day swings.
+          Board departures and shareholder votes barely register. Passed a pre-declared kill-switch test —
+          statistically real, not luck.
+        </p>
+      </div>
+      <div class="honesty-card proven">
+        <h3><span class="status-dot proven"></span> Policy network redesign</h3>
+        <p>
+          Found the old trader-brain design was half-broken — 52% dead neurons. Redesigned and measured:
+          dead neurons fell to under 1%. The new design can express market-maker behavior the old one literally could not.
+        </p>
+      </div>
+      <div class="honesty-card proven">
+        <h3><span class="status-dot proven"></span> We killed our own idea</h3>
+        <div class="metric">49.9%</div>
+        <p>
+          A live 30-hour experiment: 545 predictions on Kalshi's 15-minute crypto contracts.
+          Result was a coin-flip. We wrote it down instead of hiding it. That live-scoring machine
+          now waits for a better-suited signal.
+        </p>
+      </div>
+      <div class="honesty-card early">
+        <h3><span class="status-dot early"></span> Fair-value ranking</h3>
+        <p>
+          The main strategy — rank a basket by how cheap each asset is, lean toward bargains.
+          Built with full trading costs and strict past-vs-future separation. Early results are promising
+          but the edge is <em>not yet robustly proven</em> on real money. That's what we're testing now.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="philosophy">
+  <div class="wrap">
+    <blockquote>
+      The foundation is rigorous and explainable.
+      <strong>Most of the upside is still ahead of us</strong> —
+      and we'd rather you see that clearly than pretend otherwise.
+    </blockquote>
+  </div>
+</section>
+
+<section class="deliverables" id="products">
+  <div class="wrap">
+    <div class="section-label">Where it's going</div>
+    <h2>Several products, one engine</h2>
+    <div class="meander"></div>
+    <p class="lead">
+      The stack isn't built for a single use case. Fair-value ranking, prediction-market arbitrage,
+      governance data, and a strategy studio all draw from the same fitted world-model.
+    </p>
+    <div class="deliver-grid">
+      <div class="deliver-card">
+        <div class="status soon">Working · repointing</div>
+        <h3>Kalshi signal layer</h3>
+        <p>
+          Use the fair-value estimator to spot mispriced prediction-market contracts.
+          Live scoring infrastructure is built and running — we're aiming it at longer-horizon,
+          fair-value bets instead of 15-minute coin-flips.
+        </p>
+      </div>
+      <div class="deliver-card">
+        <div class="status soon">Early · testing</div>
+        <h3>Fair-value ranking</h3>
+        <p>
+          Sort a basket from most-underpriced to most-overpriced. Tilt toward bargains.
+          Can learn the best way to blend model signals, not just use one by hand.
+        </p>
+      </div>
+      <div class="deliver-card">
+        <div class="status future">Planned</div>
+        <h3>Crypto compounder</h3>
+        <p>
+          Run fair-value ranking on crypto, where trading is cheap enough that a slow,
+          steady edge can survive the costs. Deliberately waiting for the ranking edge to prove out first.
+        </p>
+      </div>
+      <div class="deliver-card">
+        <div class="status future">Planned</div>
+        <h3>Operator cockpit</h3>
+        <p>
+          A dashboard for daily supervision — picks, proposed trades, rolling retrains,
+          human approval before anything executes. The bridge from backtest to real deployment.
+        </p>
+      </div>
+      <div class="deliver-card">
+        <div class="status future">Planned</div>
+        <h3>CEO-pay governance data</h3>
+        <p>
+          Rank companies by whether executive pay tracks performance. Built on machine-readable
+          SEC filings. No trading required — a standalone data product for ESG funds and journalists.
+        </p>
+      </div>
+      <div class="deliver-card">
+        <div class="status future">Vision</div>
+        <h3>Strategy studio</h3>
+        <p>
+          An app where people generate, inspect, and trade strategies — explainable, not black-box.
+          A playback viewer for simulations already exists as the first seed.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="contact-box">
+      <h2>Interested in what we're building?</h2>
+      <p>
+        Aril is pre-launch. If you're curious about the stack, the data, or where this is headed —
+        we'd like to hear from you.
+      </p>
+      <a class="email" href="mailto:hello@aril.dev">hello@aril.dev</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Aril · Generative market intelligence</p>
+</footer>
+
+</body>
+</html>
