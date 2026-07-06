@@ -46,8 +46,8 @@
         <span class="lbl">Crypto markets · intraday grain</span>
       </div>
       <div class="stat">
-        <span class="num">Live</span>
-        <span class="lbl">Predictions scored against reality</span>
+        <span class="num">545</span>
+        <span class="lbl">Predictions scored live on Kalshi</span>
       </div>
       <div class="stat">
         <span class="num">1 CPU</span>
@@ -220,13 +220,13 @@
       <div class="honesty-card proven">
         <h3><span class="status-dot proven"></span> A live scoreboard, not a backtest</h3>
         <p>
-          Janus's predictions are scored continuously against real market outcomes on a
-          regulated exchange — a grader that cannot be argued with. Early on, we aimed this
-          machinery at an ultra-short-horizon idea, ran it live for thirty hours, and the
-          scoreboard said: no edge. So we retired that idea, in writing, and re-aimed the
-          same machinery at the horizons where Janus is strong. That's the system working
-          exactly as designed — the discipline that retires a weak signal in thirty hours
-          is the same discipline that makes a surviving signal worth backing.
+          We built machinery that logs predictions on a regulated exchange and scores
+          them when markets settle — a grader that cannot be argued with. In a thirty-hour
+          live run, <strong>545</strong> ultra-short-horizon calls landed at
+          <strong>49.9%</strong>: a coin flip. We retired that idea in writing and
+          re-aimed the same machinery at longer horizons. The discipline that kills a
+          weak signal in thirty hours is the same discipline that makes a surviving
+          signal worth backing.
         </p>
       </div>
       <div class="honesty-card proven">
@@ -356,12 +356,22 @@
         </p>
       </div>
       <div class="deliver-card">
+        <div class="status live">Working · prototype</div>
+        <h3>Android field app</h3>
+        <p>
+          A Kotlin mobile prototype already on device: live model fitting, history playback,
+          and an on-device <strong>Distill</strong> tab that runs the same symbolic rule
+          extraction as the Python stack — readable rules, streamed from the engine on the phone.
+        </p>
+      </div>
+      <div class="deliver-card">
         <div class="status future">Planned</div>
         <h3>Argus — the operator console</h3>
         <p>
           Named for the watchman with a hundred eyes: a daily cockpit showing picks,
           proposed trades, and model health, with a human approving every action before
-          it executes. The bridge from validated strategy to running capital.
+          it executes. A static console preview and session-playback harness exist today;
+          the full supervised deployment loop is designed but not shipped.
         </p>
       </div>
       <div class="deliver-card">
@@ -370,7 +380,8 @@
         <p>
           A studio where users generate, inspect, and share strategies that explain
           themselves — because everything Janus produces is readable by design.
-          A playback viewer for engine runs already exists as the first seed.
+          Two seeds already exist: an Electron playback viewer for engine runs
+          (<strong>umarketsim-viz</strong>) and the Android prototype above.
         </p>
       </div>
     </div>

@@ -126,11 +126,11 @@ const NODES = [
     desc:"A US-regulated exchange for event contracts serves Janus two ways: as a venue where mispriced contracts can be traded profitably, and as an incorruptible grader — every prediction Janus logs there gets scored against what actually happened, with real money keeping everyone honest.",
     rigor:"This is the sharpest validation instrument in the whole system: outcomes are settled by reality, not by our own evaluation code. Predictions are logged before the fact and scored after — there is no way to flatter the results.",
     grow:"The scoring machinery is built and running. As Janus's strengths are mapped, the same machinery aims at whichever markets and horizons offer the best-priced opportunities."},
-  {id:"macro", g:"input", col:0, label:"Macro backdrop", sub:"rates · inflation · calendar", status:"planned",
+  {id:"macro", g:"input", col:0, label:"Macro backdrop", sub:"rates · inflation · calendar", status:"early",
     plain:"The big-picture economic weather.",
-    desc:"Markets move with their backdrop — interest rates, inflation, the fiscal calendar. This layer will feed that context into the foundation so Janus never reads a price in a vacuum.",
+    desc:"Markets move with their backdrop — interest rates, inflation, the fiscal calendar. The ingestion pipeline (FRED, BLS, Treasury) is built; wiring a committed macro panel into the ledger is the remaining step.",
     rigor:"Designed under the same time-true discipline as everything else: only what was knowable at the time, ever.",
-    grow:"Entirely ahead of us — a clear, inexpensive addition whenever a product reaches for it."},
+    grow:"Code path exists today; a production macro panel bundle is the inexpensive addition that activates this layer."},
 
   // ── the foundation ──────────────────────────────────────────────────────────────────
   {id:"ledger", g:"shared", col:1, label:"The time-true ledger", sub:"every input, aligned in time", status:"working",
@@ -193,14 +193,19 @@ const NODES = [
     grow:"All ahead of us, by design; it is the commercial reason the rest of the machine exists."},
   {id:"d_argus", g:"deliver", col:4, label:"Argus console", sub:"a hundred eyes, one operator", status:"planned",
     plain:"The cockpit where a human supervises Janus day to day.",
-    desc:"Named for the watchman with a hundred eyes: a daily console showing picks, proposed trades, and model health, with a human approving every action before it executes and alarms when anything drifts.",
+    desc:"Named for the watchman with a hundred eyes: a daily console showing picks, proposed trades, and model health, with a human approving every action before it executes and alarms when anything drifts. A static HTML preview and deploy_record session playback exist; Mederos LLM explain-rank stubs are wired in the API.",
     rigor:"Designed to mirror real deployment — rolling updates, real costs, human oversight — rather than the idealized conditions backtests are usually shown in. The full design is written.",
     grow:"This is the bridge from validated strategy to running capital, and the natural surface for operating partner accounts."},
   {id:"d_studio", g:"deliver", col:4, label:"Janus Studio", sub:"the consumer vision", status:"planned",
     plain:"An app where people generate, inspect, and share strategies that explain themselves.",
-    desc:"The consumer-facing horizon: a studio where users create strategies, look inside them — everything Janus produces is readable by design — and a marketplace grows around sharing them. A playback viewer for engine runs already exists as the first seed.",
+    desc:"The consumer-facing horizon: a studio where users create strategies, look inside them — everything Janus produces is readable by design — and a marketplace grows around sharing them. Seeds today: the umarketsim-viz Electron playback viewer and the Android field prototype.",
     rigor:"Rests on the explainability the entire stack is built around: you can show a customer why, not just hand them a number and ask for trust.",
-    grow:"Mostly vision today — and the run-viewer and plain-language rules are already real, which is more than most visions start with."},
+    grow:"Mostly vision today — and the run-viewer, mobile Distill tab, and plain-language rules are already real."},
+  {id:"d_mobile", g:"deliver", col:4, label:"Android field app", sub:"live fit · distill on device", status:"working",
+    plain:"A phone-native prototype: fit the model, play history, distill rules locally.",
+    desc:"Kotlin Compose app with Live Fit, History, Sample, and Distill tabs. DistillEngine runs symbolic rule extraction on-device — the same readable-rule idea as the Python stack, streamed to the UI.",
+    rigor:"Not the final consumer app (that's Janus Studio), but a working end-to-end harness proving the engine can run outside the lab.",
+    grow:"On-device Janus ranker weights and Kraken live quotes are the next wires — scaffold is documented in the handoff plan."},
 ];
 
 const LINKS = [
@@ -225,6 +230,7 @@ const LINKS = [
   ["fvr","d_comp","f"],["cloud","d_event","f","contract pricing"],
   ["fvr","d_argus","f"],
   ["cloud","d_studio","f"],["rules","d_studio","f"],
+  ["cloud","d_mobile","f"],["rules","d_mobile","f"],
   ["kalshi","d_event","f","real-money settlement"],
   ["cloud","kalshi","d","predictions logged live"],
 ];
