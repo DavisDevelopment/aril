@@ -5,8 +5,8 @@
 <title>The Janus Engine — Interactive System Map</title>
 <style>
   :root{
-    --bg:#0d1117; --panel:#161b22; --edge:#30363d; --text:#e6edf3; --muted:#8b949e;
-    --input:#58a6ff; --agora:#f778ba; --pythia:#a371f7; --shared:#3fb950;
+    --bg:#0b0812; --panel:#171122; --edge:#2c2044; --text:#ece7f4; --muted:#9a8fb2;
+    --input:#6aa4ff; --agora:#f778ba; --pythia:#b57cf0; --shared:#4bc46a;
     --dynamic:#e3b341; --deliver:#ff7b72;
   }
   *{box-sizing:border-box}
@@ -116,11 +116,11 @@ const NODES = [
     desc:"Bitcoin, Ethereum, and the other majors — real traded prices at both a daily and an intraday resolution. Crypto matters commercially because it trades around the clock at low cost: exactly the terrain where a steady analytical edge compounds fastest.",
     rigor:"Sourced from public exchange records and a live, US-regulated feed. No paid data, no cherry-picking — every price is a real historical trade.",
     grow:"Coverage widens on demand: more pairs, finer grain, and richer market detail are all straightforward extensions of the same pipeline."},
-  {id:"edgar", g:"input", col:0, label:"Regulatory disclosures", sub:"earnings · insiders · executive pay", status:"proven",
+  {id:"edgar", g:"input", col:0, label:"Regulatory disclosures", sub:"earnings · insiders · events", status:"proven",
     plain:"What public companies must legally disclose — turned into clean, searchable facts.",
-    desc:"Every US public company files with the regulator: earnings, insider trades, sudden material events, and exactly how leadership is paid. Janus reads these filings automatically and turns them into structured facts — the layer of corporate reality that sits underneath the price.",
+    desc:"Every US public company files with the regulator: earnings, insider trades, and sudden material events. Janus reads these filings automatically and turns them into structured facts — the layer of corporate reality that sits underneath the price.",
     rigor:"Drawn directly from the regulator's own official, public systems. The reader is built to know what it knows: anything it can't confidently interpret is flagged rather than guessed at, so the fact base stays clean.",
-    grow:"The extraction machinery is the hard part, and it's built. Widening company coverage from here is a scaling exercise — and it directly powers the standalone governance-intelligence product."},
+    grow:"The extraction machinery is the hard part, and it's built. Widening company coverage from here is a straightforward scaling exercise that deepens the corporate-reality layer under every equity."},
   {id:"kalshi", g:"input", col:0, label:"Live scoreboard", sub:"regulated event market", status:"working",
     plain:"A regulated, real-money market that grades our predictions in public.",
     desc:"A US-regulated exchange for event contracts serves Janus two ways: as a venue where mispriced contracts can be traded profitably, and as an incorruptible grader — every prediction Janus logs there gets scored against what actually happened, with real money keeping everyone honest.",
@@ -196,11 +196,6 @@ const NODES = [
     desc:"Named for the watchman with a hundred eyes: a daily console showing picks, proposed trades, and model health, with a human approving every action before it executes and alarms when anything drifts.",
     rigor:"Designed to mirror real deployment — rolling updates, real costs, human oversight — rather than the idealized conditions backtests are usually shown in. The full design is written.",
     grow:"This is the bridge from validated strategy to running capital, and the natural surface for operating partner accounts."},
-  {id:"d_gov", g:"deliver", col:4, label:"Governance intelligence", sub:"sellable without any trading", status:"planned",
-    plain:"Score companies on whether executive pay actually tracks performance.",
-    desc:"A standalone data business that requires no trading at all: rank public companies by how well leadership pay follows results, built from the machine-readable filings regulators now require. ESG funds, proxy advisors, and journalists pay for exactly this.",
-    rigor:"Built on official regulatory data with a transparent, documented scoring method — a product whose customers can check its work, which is precisely why it sells.",
-    grow:"The hard extraction machinery is already built; from here it's a coverage and packaging exercise."},
   {id:"d_studio", g:"deliver", col:4, label:"Janus Studio", sub:"the consumer vision", status:"planned",
     plain:"An app where people generate, inspect, and share strategies that explain themselves.",
     desc:"The consumer-facing horizon: a studio where users create strategies, look inside them — everything Janus produces is readable by design — and a marketplace grows around sharing them. A playback viewer for engine runs already exists as the first seed.",
@@ -228,7 +223,7 @@ const LINKS = [
   ["rules","fvr","d","discipline"],
   // intelligence → products
   ["fvr","d_comp","f"],["cloud","d_event","f","contract pricing"],
-  ["fvr","d_argus","f"],["edgar","d_gov","f","pay & performance facts"],
+  ["fvr","d_argus","f"],
   ["cloud","d_studio","f"],["rules","d_studio","f"],
   ["kalshi","d_event","f","real-money settlement"],
   ["cloud","kalshi","d","predictions logged live"],

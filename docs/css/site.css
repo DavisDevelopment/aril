@@ -1,18 +1,18 @@
 /* Aril / The Janus Engine — pre-launch · Terminal-Noir × Emergent */
 :root {
-  --bg:        #0b0e14;
-  --panel:     #12161f;
-  --grid:      #1c2330;
-  --text:      #e8ecf1;
-  --muted:     #8a94a6;
-  --signal:    #35d0c4;
+  --bg:        #0b0812;
+  --panel:     #171122;
+  --grid:      #251a38;
+  --text:      #ece7f4;
+  --muted:     #9a8fb2;
+  --signal:    #c78bf5;   /* bright lilac — primary accent, matches the fruit body */
   --heat:      #f2b134;
-  --long:      #3fb950;
+  --long:      #4bc46a;
   --short:     #f0506e;
-  --cloud:     #8b7bd8;
-  --tyrian-deep: #2a0618;
-  --tyrian:      #5a1538;
-  --tyrian-glow: #9b2d68;
+  --cloud:     #a78bfa;
+  --tyrian-deep: #240a3f;   /* deep violet, matches the icon panel */
+  --tyrian:      #5a2596;
+  --tyrian-glow: #b657e0;   /* orchid glow, matches the fruit highlight */
   --royal:       #7c5cfc;
   --royal-soft:  #a78bfa;
   --mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
@@ -59,15 +59,26 @@ nav {
   align-items: center;
   justify-content: space-between;
   padding: 14px 32px;
-  background: rgba(11, 14, 20, 0.82);
+  background: rgba(11, 8, 18, 0.82);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--grid);
 }
 nav .logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   font-weight: 700;
   font-size: 1.05rem;
   letter-spacing: -0.02em;
   color: var(--text);
+  text-decoration: none;
+}
+nav .logo:hover { text-decoration: none; }
+nav .logo-mark {
+  height: 30px;
+  width: 30px;
+  border-radius: 7px;
+  display: block;
 }
 nav .logo span { color: var(--signal); }
 nav ul {
@@ -95,7 +106,7 @@ nav .cta-nav {
   transition: background 0.15s;
 }
 nav .cta-nav:hover {
-  background: rgba(155, 45, 104, 0.12);
+  background: rgba(182, 87, 224, 0.12);
   text-decoration: none;
 }
 
@@ -146,6 +157,17 @@ h3 { font-size: 1.15rem; margin: 0 0 8px; }
   flex-direction: column;
   justify-content: center;
   padding: 120px 0 80px;
+}
+.hero-mark {
+  width: 108px;
+  height: 108px;
+  border-radius: 24px;
+  display: block;
+  margin-bottom: 26px;
+  box-shadow: 0 20px 55px rgba(150, 84, 224, 0.3);
+}
+@media (max-width: 640px) {
+  .hero-mark { width: 84px; height: 84px; border-radius: 19px; }
 }
 .hero h1 {
   font-size: clamp(2.4rem, 5.5vw, 3.6rem);
@@ -386,7 +408,7 @@ h3 { font-size: 1.15rem; margin: 0 0 8px; }
   padding: 24px;
   transition: border-color 0.15s;
 }
-.deliver-card:hover { border-color: rgba(53, 208, 196, 0.35); }
+.deliver-card:hover { border-color: rgba(199, 139, 245, 0.4); }
 .deliver-card .status {
   font-family: var(--mono);
   font-size: 0.68rem;

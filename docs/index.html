@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Aril — The Janus Engine</title>
   <meta name="description" content="Janus is Aril's market engine: it learns the machinery behind price and turns it into fair-value estimates, calibrated confidence, and rules you can actually read.">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="logo-512.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/site.css">
@@ -12,19 +14,21 @@
 <body>
 
 <nav>
-  <div class="logo">Aril <span>/ Janus</span></div>
+  <a class="logo" href="#top"><img class="logo-mark" src="logo-512.png" alt="">Aril <span>/ Janus</span></a>
   <ul>
     <li><a href="#thesis">The thesis</a></li>
     <li><a href="#engine">The engine</a></li>
     <li><a href="#map">System map</a></li>
     <li><a href="#discipline">Discipline</a></li>
+    <li><a href="#horizon">Horizon</a></li>
     <li><a href="#products">Products</a></li>
   </ul>
   <a class="cta-nav" href="#contact">Get in touch</a>
 </nav>
 
-<section class="hero">
+<section class="hero" id="top">
   <div class="wrap">
+    <img class="hero-mark" src="logo-512.png" alt="The Janus Engine">
     <div class="badge-pre">Pre-launch · 2026</div>
     <h1>Markets have <span class="accent">internals</span>.<br>Janus learns them.</h1>
     <p class="tagline">
@@ -207,7 +211,7 @@
         <h3><span class="status-dot proven"></span> The test comes before the claim</h3>
         <p>
           Every hypothesis gets its pass/fail bar written down <em>before</em> the experiment
-          runs — so a result can't be quietly reinterpreted into a success after the fact.
+          runs — so a result can't be reinterpreted into a success after the fact.
           Earnings events, for example, earned their place in the engine by clearing a
           pre-declared statistical bar on real data; ideas that sound just as plausible
           but didn't clear it were left out. The engine contains only what survived.
@@ -261,6 +265,59 @@
   </div>
 </section>
 
+<section class="pillars" id="horizon">
+  <div class="wrap">
+    <div class="section-label">The horizon</div>
+    <h2>Markets are the first surface, not the last</h2>
+    <div class="meander"></div>
+    <p class="lead">
+      What Janus actually learns is more general than any one market: how a population of
+      decision-makers, each acting on partial information, drives a system toward an outcome.
+      Exchange order books are simply the cleanest place to begin. Feed the same engine
+      richer inputs and the world it can model — and price — widens dramatically. Every new
+      kind of data isn't a new product to build from scratch; it's a new sense for an engine
+      that already knows what to do with it.
+    </p>
+    <div class="pillar-grid">
+      <div class="pillar">
+        <div class="icon">→ THE HUMAN GRAPH</div>
+        <h3>Who moves whom</h3>
+        <p>
+          Behind every price is a web of people — the relationships, allegiances, and
+          overlapping histories among the decision-makers who steer companies and capital.
+          Mapped as structure the engine can read, that web becomes a modelable force,
+          not background noise.
+        </p>
+      </div>
+      <div class="pillar">
+        <div class="icon">→ LANGUAGE AT SCALE</div>
+        <h3>Information, the moment it's information</h3>
+        <p>
+          The world announces itself in words first — filings, headlines, narrative,
+          sentiment. An engine that ingests that flow as it breaks reacts to what's changed
+          the instant it changes, rather than waiting for it to show up in the tape.
+        </p>
+      </div>
+      <div class="pillar">
+        <div class="icon">→ FRONTIER REASONING</div>
+        <h3>The best models, in the loop</h3>
+        <p>
+          The most capable reasoning systems available, integrated as first-class
+          participants — reading, connecting, and forming hypotheses alongside the
+          simulation. Janus is built to put their judgement to work inside the engine,
+          not merely beside it.
+        </p>
+      </div>
+    </div>
+    <p class="lead" style="margin-top:36px">
+      Each of these is another current feeding the same river: one cohesive engine that turns
+      more of the world into something it can simulate, anticipate, and act on. Markets were
+      the proving ground. The ambition is a general capital engine — and its foundation is
+      deliberately built to grow into exactly that.
+    </p>
+  </div>
+</section>
+
 <section class="deliverables" id="products">
   <div class="wrap">
     <div class="section-label">Where it's going</div>
@@ -268,8 +325,7 @@
     <div class="meander"></div>
     <p class="lead">
       Janus wasn't built for a single trade. The same fitted engine prices event contracts,
-      ranks assets by fair value, reads corporate disclosures, and powers tools people
-      can put their hands on.
+      ranks assets by fair value, and powers tools people can put their hands on.
     </p>
     <div class="deliver-grid">
       <div class="deliver-card">
@@ -306,15 +362,6 @@
           Named for the watchman with a hundred eyes: a daily cockpit showing picks,
           proposed trades, and model health, with a human approving every action before
           it executes. The bridge from validated strategy to running capital.
-        </p>
-      </div>
-      <div class="deliver-card">
-        <div class="status future">Planned</div>
-        <h3>Governance intelligence</h3>
-        <p>
-          A standalone data product, no trading required: scoring public companies on
-          whether executive pay actually tracks performance, built from machine-readable
-          regulatory filings. ESG funds, proxy advisors, and journalists buy exactly this.
         </p>
       </div>
       <div class="deliver-card">
