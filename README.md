@@ -1,6 +1,6 @@
-# Aril
+# Mederos
 
-Pre-launch product site for **Aril** and **Janus**, Aril's market engine.
+Pre-launch product site for **Mederos** and **Janus**, Mederos's market engine.
 
 **Live site:** [davisdevelopment.github.io/aril](https://davisdevelopment.github.io/aril/)
 
