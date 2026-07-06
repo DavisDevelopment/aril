@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>MarketSim — Interactive System Map</title>
+<title>The Janus Engine — Interactive System Map</title>
 <style>
   :root{
     --bg:#0d1117; --panel:#161b22; --edge:#30363d; --text:#e6edf3; --muted:#8b949e;
-    --input:#58a6ff; --fastpop:#f778ba; --umarket:#a371f7; --shared:#3fb950;
+    --input:#58a6ff; --agora:#f778ba; --pythia:#a371f7; --shared:#3fb950;
     --dynamic:#e3b341; --deliver:#ff7b72;
   }
   *{box-sizing:border-box}
@@ -41,9 +41,6 @@
   #side .sec{font-size:10px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;
     color:var(--muted);margin:14px 0 3px;display:flex;align-items:center;gap:6px}
   #side .sec .bar{width:14px;height:2px;border-radius:2px}
-  #side .files{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:var(--muted);
-    background:#0d1117;border:1px solid var(--edge);border-radius:8px;padding:8px 10px;margin-top:6px;
-    white-space:pre-wrap}
   #side .hint{color:var(--muted);font-size:12px;line-height:1.6}
   #side .grow{color:#f0d98a}  /* room-to-grow copy reads warm/optimistic */
   #matkey{position:absolute;bottom:14px;left:16px;background:rgba(22,27,34,.85);
@@ -72,211 +69,174 @@
     <svg id="svg"></svg>
     <div id="legend"></div>
     <div id="matkey"></div>
-    <div id="title"><b>MarketSim System Map</b><br><span>hover a node · click to pin · drag to move · scroll to zoom</span></div>
+    <div id="title"><b>The Janus Engine — System Map</b><br><span>hover a node · click to pin · drag to move · scroll to zoom</span></div>
   </div>
   <div id="side">
     <div id="detail">
-      <h1>The generative market-analysis stack</h1>
-      <p class="hint">One fitted world-model, fed by real data, split into two cooperating
-      simulators, distilled into explicit rules and probability clouds, and monetized across
-      several deliverables.<br><br>
+      <h1>How the machine works</h1>
+      <p class="hint">Real markets come in on the left. They flow through the two faces of
+      Janus — Agora, the market grown in rehearsal, and Pythia, the reader of the real tape —
+      get distilled into fair value and readable rules, and become products on the right.<br><br>
       <b>Hover</b> any node to trace what feeds it and what it feeds. <b>Click</b> to pin its
-      details here. Dashed edges are <i>dynamics</i> (a process acting on another), solid edges are
-      <i>data/flow</i>. Toggle groups in the legend.</p>
+      details here. Dashed edges are <i>influence</i> (one part shaping another), solid edges are
+      <i>data flow</i>. Toggle groups in the legend.</p>
     </div>
   </div>
 </div>
 <script>
 // ── graph model ────────────────────────────────────────────────────────────────────────
 const GROUPS = {
-  input:   {name:"Real-world inputs", color:getVar('--input')},
-  shared:  {name:"Shared world-model", color:getVar('--shared')},
-  fastpop: {name:"FastPop (agent sim)", color:getVar('--fastpop')},
-  umarket: {name:"UMarketSim (diff. encoder)", color:getVar('--umarket')},
-  deliver: {name:"Deliverables", color:getVar('--deliver')},
+  input:  {name:"Market reality", color:getVar('--input')},
+  shared: {name:"The foundation", color:getVar('--shared')},
+  agora:  {name:"Agora — inward face", color:getVar('--agora')},
+  pythia: {name:"Pythia — outward face", color:getVar('--pythia')},
+  deliver:{name:"Products", color:getVar('--deliver')},
 };
 function getVar(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim()}
 
-// maturity — this is what makes "room for improvement" visible at a glance
+// maturity — makes "how much is proven vs still ahead" visible at a glance
 const STATUS = {
-  proven:  {label:"Proven",       color:"#3fb950", blurb:"tested honestly, held up"},
-  working: {label:"Working",      color:"#58a6ff", blurb:"built & running, edge not yet banked"},
-  early:   {label:"Early",        color:"#e3b341", blurb:"promising, results still preliminary"},
-  planned: {label:"Planned",      color:"#8b949e", blurb:"designed, not built yet"},
+  proven:  {label:"Proven",  color:"#3fb950", blurb:"survived pre-declared tests"},
+  working: {label:"Working", color:"#58a6ff", blurb:"built and running"},
+  early:   {label:"Early",   color:"#e3b341", blurb:"promising, still being validated"},
+  planned: {label:"Planned", color:"#8b949e", blurb:"designed, ahead of us"},
 };
 
-// status: proven | working | early | planned  (drives the maturity dot + badge)
-// each node: plain (one-liner anyone gets) · desc · rigor (why trust it) · grow (room to improve)
-// col: 0 inputs · 1 shared/panel · 2 the two engines · 3 signal products · 4 deliverables
+// each node: plain (one-liner anyone gets) · desc · rigor (why trust it) · grow (room to grow)
+// col: 0 market reality · 1 foundation · 2 the two faces · 3 distilled intelligence · 4 products
 const NODES = [
-  // ── inputs ──────────────────────────────────────────────────────────────────────────
-  {id:"crypto", g:"input", col:0, label:"Crypto prices", sub:"10 coins · minute + daily", status:"working",
-    plain:"Real price history for 10 crypto coins — the raw fuel.",
-    desc:"Actual past prices for Bitcoin, Ethereum and eight others, pulled straight from public exchange data for free. Nothing here is invented — the system only ever learns from prices that really happened, at both a daily and a 15-minute grain.",
-    rigor:"Sourced from a public exchange archive plus a live, US-legal feed. No paid data and no cherry-picking — every price bar is a real historical trade.",
-    grow:"It's only 10 coins today. Adding more coins — and the depth of the order book, not just the price — would give the model far more to learn from.",
-    files:"crypto_dataset.py · crypto_intraday.py"},
-  {id:"equities", g:"input", col:0, label:"Stock prices", sub:"~1,000 US stocks · 2013→today", status:"proven",
-    plain:"Daily prices for about 1,000 US stocks, 2013 to today.",
-    desc:"The stock-market version of the crypto data. It began as an old 2013-2023 archive and was recently extended all the way to the present — for free — which quietly switched the stock side of the whole project back on after it had been stuck in 2023.",
-    rigor:"Real daily closing prices. We flag one honest caveat right in the code: a possible tiny 'seam' where the old archive meets the newly-pulled data.",
-    grow:"It's 'today's popular stocks,' which slightly flatters any result because companies that went bust are missing. A clean, bust-inclusive universe is the upgrade.",
-    files:"equities_dataset.py · equities_freshen.py"},
-  {id:"edgar", g:"input", col:0, label:"Company filings (SEC)", sub:"earnings · insider · CEO pay", status:"proven",
-    plain:"What public companies legally must disclose — pulled in automatically.",
-    desc:"Every US public company files paperwork with the government: earnings, who's buying or selling their own stock, sudden events, and exactly how much the CEO is paid. We turn all of it into clean, searchable facts — the 'fundamentals and gossip' layer sitting under the price.",
-    rigor:"Straight from the SEC's own free, official systems. When our reader can't understand a document it logs the miss instead of guessing — so we always know exactly what we might be missing.",
-    grow:"Coverage is still thin (a few dozen companies), and we discovered one reader was quietly picking up nothing — a known gap. Widening this is the single biggest unlock for the company-data ideas.",
-    files:"crawling/edgar_*.py · exec_comp.py"},
-  {id:"kalshi", g:"input", col:0, label:"Prediction market", sub:"Kalshi · live scoreboard", status:"working",
-    plain:"A legal betting market — and a brutally honest scoreboard.",
-    desc:"Kalshi lets you trade contracts like 'will Bitcoin be up in 15 minutes?' It's useful two ways: a place to actually make money, and a free, unforgiving grader — every prediction gets scored against what really happened.",
-    rigor:"We ran a live 30-hour experiment: 545 predictions, auto-scored. The honest result — our 15-minute up/down calls were a coin-flip (49.9%) — was written down, not hidden. That willingness to disprove ourselves is the whole point.",
-    grow:"The 15-minute timing bet is a dead end, and we proved it. The same live-scoring machine can be pointed at the far more promising fair-value ranking idea instead.",
-    files:"crypto_live_backtest.py"},
-  {id:"macro", g:"input", col:0, label:"Economic backdrop", sub:"rates · inflation · calendar", status:"planned",
+  // ── market reality ──────────────────────────────────────────────────────────────────
+  {id:"equities", g:"input", col:0, label:"Equity markets", sub:"~1,000 US names · 2013→today", status:"proven",
+    plain:"A decade-plus of real daily history for about a thousand US stocks.",
+    desc:"The deep end of the data pool: real closing prices for roughly a thousand US equities, spanning more than a decade and running right up to the present. Janus never learns from invented data — every bar in this archive is something that actually traded.",
+    rigor:"Real, verifiable market history with documented provenance. Where the archive has known limitations, they're recorded alongside the data rather than papered over — so results are always read with the right context.",
+    grow:"A thousand names is a strong start; the same pipeline extends naturally to broader universes and international markets as the products demand them."},
+  {id:"crypto", g:"input", col:0, label:"Crypto markets", sub:"10+ pairs · intraday + daily", status:"working",
+    plain:"Real price history for the major crypto markets, down to the intraday grain.",
+    desc:"Bitcoin, Ethereum, and the other majors — real traded prices at both a daily and an intraday resolution. Crypto matters commercially because it trades around the clock at low cost: exactly the terrain where a steady analytical edge compounds fastest.",
+    rigor:"Sourced from public exchange records and a live, US-regulated feed. No paid data, no cherry-picking — every price is a real historical trade.",
+    grow:"Coverage widens on demand: more pairs, finer grain, and richer market detail are all straightforward extensions of the same pipeline."},
+  {id:"edgar", g:"input", col:0, label:"Regulatory disclosures", sub:"earnings · insiders · executive pay", status:"proven",
+    plain:"What public companies must legally disclose — turned into clean, searchable facts.",
+    desc:"Every US public company files with the regulator: earnings, insider trades, sudden material events, and exactly how leadership is paid. Janus reads these filings automatically and turns them into structured facts — the layer of corporate reality that sits underneath the price.",
+    rigor:"Drawn directly from the regulator's own official, public systems. The reader is built to know what it knows: anything it can't confidently interpret is flagged rather than guessed at, so the fact base stays clean.",
+    grow:"The extraction machinery is the hard part, and it's built. Widening company coverage from here is a scaling exercise — and it directly powers the standalone governance-intelligence product."},
+  {id:"kalshi", g:"input", col:0, label:"Live scoreboard", sub:"regulated event market", status:"working",
+    plain:"A regulated, real-money market that grades our predictions in public.",
+    desc:"A US-regulated exchange for event contracts serves Janus two ways: as a venue where mispriced contracts can be traded profitably, and as an incorruptible grader — every prediction Janus logs there gets scored against what actually happened, with real money keeping everyone honest.",
+    rigor:"This is the sharpest validation instrument in the whole system: outcomes are settled by reality, not by our own evaluation code. Predictions are logged before the fact and scored after — there is no way to flatter the results.",
+    grow:"The scoring machinery is built and running. As Janus's strengths are mapped, the same machinery aims at whichever markets and horizons offer the best-priced opportunities."},
+  {id:"macro", g:"input", col:0, label:"Macro backdrop", sub:"rates · inflation · calendar", status:"planned",
     plain:"The big-picture economic weather.",
-    desc:"Markets move with the backdrop — interest rates, inflation, the calendar. This would feed that context in gently, so the model isn't reading prices in a vacuum.",
-    rigor:"Designed with strict 'only use what was known at the time' discipline — but not built yet.",
-    grow:"Entirely ahead of us: a clear, cheap addition whenever we reach for it.",
-    files:"dataset_assembly.py (planned)"},
+    desc:"Markets move with their backdrop — interest rates, inflation, the fiscal calendar. This layer will feed that context into the foundation so Janus never reads a price in a vacuum.",
+    rigor:"Designed under the same time-true discipline as everything else: only what was knowable at the time, ever.",
+    grow:"Entirely ahead of us — a clear, inexpensive addition whenever a product reaches for it."},
 
-  // ── shared world-model ──────────────────────────────────────────────────────────────
-  {id:"panel", g:"shared", col:1, label:"The shared dashboard", sub:"every input, lined up in time", status:"working",
-    plain:"One tidy dashboard that every part of the system reads from.",
-    desc:"All the raw inputs get combined into a single, time-aligned table the models read: price-derived signals, calendar rhythms, a summary of company health, and a news-event calendar — everything lined up so nothing can 'cheat' by peeking at the future.",
-    rigor:"Built so that future information physically cannot leak backward into the past — one of the most common ways backtests secretly lie, designed out here by construction.",
-    grow:"The company-health and news layers are still thin. Richer, cleaner inputs here lift the quality of everything downstream.",
-    files:"unified_diffmarketsim/world.py · edgar_news.py"},
-  {id:"newscal", g:"shared", col:1, label:"News-shock calendar", sub:"PROVEN: earnings hit hardest", status:"proven",
-    plain:"A calendar of company news, weighted by how much each type really moves prices.",
-    desc:"Not all news is equal. We measured it on real data: earnings announcements roughly double a stock's next-day swings, while 'a board member left' or 'shareholders voted' barely register. The simulation now shakes harder on exactly the days that historically mattered.",
-    rigor:"This passed a pre-declared 'kill-switch' test — earnings shocks were statistically real (a result very unlikely to be luck) and the boring news types were correctly flat. One idea in, honestly measured, and it earned its place.",
-    grow:"It sets the SIZE of each shock, but the sim only partly reacts right now. A small tuning knob would make the simulation's reaction match the real-world magnitude, not just the ranking.",
-    files:"edgar_news.py · probes/probe_8k_shocks.py"},
+  // ── the foundation ──────────────────────────────────────────────────────────────────
+  {id:"ledger", g:"shared", col:1, label:"The time-true ledger", sub:"every input, aligned in time", status:"working",
+    plain:"One rigorously time-aligned foundation that every part of Janus reads from.",
+    desc:"All the raw inputs — prices, disclosures, events — are fused into a single foundation where everything is lined up on a strict timeline. Every model, at every moment, sees exactly what was knowable at that moment and nothing more.",
+    rigor:"The most common way quantitative research fools its authors is information leaking backward from the future. Here that is prevented by the architecture itself, not by policy — leakage is impossible by construction, and that property is continuously verified.",
+    grow:"The foundation is built to absorb new inputs cheaply: each new data source added here lifts everything downstream at once."},
+  {id:"newscal", g:"shared", col:1, label:"Event calendar", sub:"weighted by measured impact", status:"proven",
+    plain:"A calendar of corporate events, weighted by how much each kind really moves markets.",
+    desc:"Not all news is equal, and Janus doesn't guess at which kinds matter — it measured them. Event types that demonstrably move prices carry real weight in the engine; event types that sound important but measurably don't were left out. The engine's sense of 'a big day' is earned from data.",
+    rigor:"The measurements cleared a pre-declared statistical bar on real market history — the pass/fail line was set before the test ran, so the result could not be massaged afterward. This is the template every future signal has to survive.",
+    grow:"The calendar currently covers the highest-impact event families; the same measure-first method extends to each new event type as coverage grows."},
 
-  // ── FastPop (agent sim) ─────────────────────────────────────────────────────────────
-  {id:"pop", g:"fastpop", col:2, label:"Simulated crowd", sub:"thousands of trader 'personalities'", status:"working",
-    plain:"A simulated crowd of thousands of different traders.",
-    desc:"Instead of one equation, we grow a whole population of pretend traders — market-makers, trend-chasers, bargain-hunters, random noise, big institutions, the exchange itself. Each has its own personality, and when they trade against each other, realistic market behavior emerges on its own.",
-    rigor:"The crowd reproduces well-known real-market fingerprints — rare-but-violent moves, calm periods followed by stormy ones — without ever being told to. That's a sign the mechanics are honest rather than hand-drawn to look good.",
-    grow:"The personalities are hand-designed. Letting them be shaped by real company data — who actually trades this stock — is a rich, largely untapped direction.",
-    files:"fastpop.py"},
-  {id:"policy", g:"fastpop", col:2, label:"The traders' brains", sub:"shared decision network (v2)", status:"proven",
-    plain:"The little decision-making 'brain' every simulated trader shares.",
-    desc:"Each pretend trader decides buy / sell / how-much using a small neural network. We recently found the old design was half-broken — most of its 'neurons' were effectively dead — and redesigned it, then measured the fix rather than assuming it.",
-    rigor:"We didn't just claim improvement, we measured it: dead neurons fell from 52% to under 1%, and the new design can express market-maker behavior the old one literally could not — about a third of all real trading activity.",
-    grow:"Big open door: nothing actually trains this brain yet. Building the trainer would let the entire crowd learn from data instead of following hand-written rules — a major leap in realism and capability.",
-    files:"fastpop.py (PolicyMLPv2)"},
-  {id:"lob", g:"fastpop", col:2, label:"Simulated exchange", sub:"where orders meet, price forms", status:"working",
-    plain:"The simulated stock exchange where orders meet and prices form.",
-    desc:"When the pretend traders place orders, this is the matching engine that pairs buyers with sellers and moves the price — the same way a real exchange does, just simplified and very fast.",
-    rigor:"Prices come from the actual balance of buying vs selling pressure, not a random-number generator — which is precisely why realistic price patterns show up.",
-    grow:"It's a simplified auction. More faithful order-book detail is available if a use-case ever demands it.",
-    files:"fastpop.py (clear_auction)"},
-  {id:"calib", g:"fastpop", col:2, label:"Reality-matching dials", sub:"auto-tunes the sim", status:"proven",
-    plain:"The dial-tuner that makes the simulation match the real world.",
-    desc:"The simulation has a handful of dials — how jumpy, how correlated, how trend-y. This automatically tunes them until the sim's behavior matches real market data.",
-    rigor:"We found and fixed a subtle measurement bug that had been letting random luck masquerade as improvement, and upgraded the search method — the new one generalizes noticeably better on held-out data for the same compute.",
-    grow:"It tunes a handful of dials today. As the simulation grows richer, the same honest tuning approach scales up with it.",
-    files:"calibrate_fastpop.py"},
+  // ── Agora (the inward face) ─────────────────────────────────────────────────────────
+  {id:"agora", g:"agora", col:2, label:"Agora", sub:"a living market in miniature", status:"working",
+    plain:"A synthetic market where thousands of distinct participants trade against each other.",
+    desc:"Janus's inward face: a market grown from first principles, populated by thousands of participants with different goals, horizons, and appetites — patient institutions, restless speculators, liquidity providers, opportunists. Their interactions, not a formula, produce the prices.",
+    rigor:"The hallmarks of real markets — rare violent moves, calm that turns to storm, crowding and retreat — emerge in Agora on their own, without ever being scripted. Behavior that appears unprompted, rather than being drawn in by hand, is the signature of honest machinery.",
+    grow:"Agora is a rehearsal space that can stage ten thousand market histories where reality offers only one. Making its cast of participants ever more faithful to the real crowd is one of the richest veins of upside in the whole system."},
+  {id:"tuning", g:"agora", col:2, label:"The rehearsal tuner", sub:"keeps Agora true to reality", status:"proven",
+    plain:"Continuously tunes Agora until its markets behave like the real thing.",
+    desc:"A rehearsal is only valuable if it resembles opening night. This component automatically adjusts Agora until its synthetic markets are statistically faithful to real ones — so what Janus learns in rehearsal transfers to the real tape.",
+    rigor:"The tuning process is judged on data it has never seen, under controls specifically designed to stop random luck from masquerading as improvement — a standard most published research doesn't meet.",
+    grow:"As Agora's cast grows richer, the same honest tuning approach scales up with it — the method is built once and reused forever."},
 
-  // ── UMarketSim (the learned model) ──────────────────────────────────────────────────
-  {id:"encoder", g:"umarket", col:2, label:"Pattern reader", sub:"summarizes market history", status:"working",
-    plain:"Turns messy market history into a compact 'what's going on' summary.",
-    desc:"This reads the recent history off the dashboard and boils it down to a small set of numbers capturing the current situation. It's deliberately lightweight so it runs on a normal computer, and it works the same whether it's reading stocks or crypto.",
-    rigor:"Trained honestly — only on past data, never peeking ahead — and 'warm-started' from the simulation, an approach we measured to beat starting from scratch.",
-    grow:"It's a modest model on modest hardware by design. More data, more assets, and stronger hardware would raise its ceiling substantially.",
-    files:"unified_diffmarketsim/encoder.py"},
-  {id:"cloud", g:"umarket", col:2, label:"Fair-value estimator", sub:"the heart of the useful part", status:"working",
-    plain:"Estimates what each thing is 'really worth', with a confidence range.",
-    desc:"From the summary, this produces not a single guess but a whole range: roughly where something should be worth, and how confident it is. The middle of that range is the fair-value estimate — the number the entire ranking strategy is built on.",
-    rigor:"Its confidence bands are calibrated against reality — when it says 90% it has been checked to actually mean about 90% — and a units bug that was quietly corrupting it was hunted down and fixed.",
-    grow:"Its steadiness in choppy markets is the known weak spot, and the single most valuable thing to improve — because everything to the right leans on it.",
-    files:"unified_diffmarketsim/probability_cloud.py"},
-  {id:"robusthead", g:"umarket", col:2, label:"Regime-aware forecaster", sub:"notices mood changes", status:"early",
-    plain:"Tries to notice when the market's 'mood' changes — calm, panicky, trending.",
-    desc:"Markets have moods, and a signal that works in calm times can fail in a panic. This tries to detect those shifts and keep the system safe across them.",
-    rigor:"It behaves safely and can genuinely tell moods apart — but, honestly, it hasn't manufactured extra profit yet. The real bottleneck is forecast quality, not this piece.",
-    grow:"Lots of headroom. Today it's more of a safety layer than a money-maker.",
-    files:"unified_diffmarketsim/forecast_head.py · regime.py"},
+  // ── Pythia (the outward face) ───────────────────────────────────────────────────────
+  {id:"pythia", g:"pythia", col:2, label:"Pythia", sub:"reads the real tape", status:"working",
+    plain:"Reads real market history and distills the current situation into its essentials.",
+    desc:"Janus's outward face: Pythia reads the foundation — prices, events, context — and condenses the present moment into its essential state. She is deliberately lean, running comfortably on commodity hardware, and reads equities and crypto with the same eyes.",
+    rigor:"Trained under the time-true discipline — only ever on the past, never peeking ahead — and given a measured head start by rehearsing in Agora before facing real markets, an advantage we verified rather than assumed.",
+    grow:"Pythia is intentionally efficient today. More data, more markets, and heavier hardware raise her ceiling substantially — a scaling dial we hold in reserve."},
+  {id:"cloud", g:"pythia", col:2, label:"The fair-value cloud", sub:"value + calibrated confidence", status:"working",
+    plain:"What is this actually worth — and how sure are we? Both answers, honestly.",
+    desc:"Pythia's answer is never a bare number. For each asset she produces a fair-value estimate wrapped in a full range of confidence — where the value likely sits, and precisely how much trust the estimate deserves. This cloud is the raw material every product is built from.",
+    rigor:"The confidence is calibrated against reality: when the cloud says 90%, that figure has been checked to actually mean about 90%. Confidence you can't verify is decoration; this is measured.",
+    grow:"The cloud's steadiness in turbulent markets is the frontier we're actively pushing — and because every product draws from it, each improvement here pays out everywhere at once."},
 
-  // ── distilled signal (col 3) ────────────────────────────────────────────────────────
-  {id:"distill", g:"shared", col:3, label:"Rule extractor", sub:"swarm → plain-English rules", status:"proven",
-    plain:"Turns the simulated crowd's winning behavior into plain-English rules.",
-    desc:"After the simulation runs, this looks at which pretend traders made money and writes down what they actually did — as readable rules, not a black box. For example: 'buy what's cheap versus fair value, and don't keep piling onto a position you're already deep in.'",
-    rigor:"The rules come out human-readable and match textbook risk discipline that emerged on its own — nobody programmed it in. We also honestly tested whether they carry over to real data; the result was mixed, and we wrote that down too.",
-    grow:"The rules are simple straight-line ones today. Richer but still-explainable rules, and better fair-value inputs to feed them, are open directions.",
-    files:"pop_distill.py"},
-  {id:"fvr", g:"deliver", col:3, label:"Fair-value ranking strategy", sub:"buy the bargains", status:"early",
-    plain:"The main strategy: rank a basket by how cheap each thing is, lean toward the bargains.",
-    desc:"This is the payoff of everything to its left. Rather than guessing which way one thing will move (which failed), it sorts a whole basket from most-underpriced to most-overpriced and tilts toward the bargains. It can also LEARN the best way to blend the model's signals, not just use one by hand.",
-    rigor:"Built with unforgiving accounting: full trading costs charged, strict past-vs-future separation, and compared against dumb baselines — equal-weight, random, momentum — so we can't quietly fool ourselves.",
-    grow:"This is early and the edge is NOT yet robustly proven on real money. Bigger baskets, a steadier fair-value estimate, and the learned blender are exactly the levers now being tested — enormous room to run.",
-    files:"fair_value_rank.py"},
+  // ── distilled intelligence ──────────────────────────────────────────────────────────
+  {id:"rules", g:"shared", col:3, label:"Readable rules", sub:"winning behavior, in plain English", status:"proven",
+    plain:"What the winners do, written down as rules a human can read and challenge.",
+    desc:"After Agora runs, Janus studies which participants prospered and writes down what they actually did — as plain-language rules, not an inscrutable model. 'Buy what's cheap against fair value. Don't pile deeper into a position you're already committed to.' Nobody wrote those rules in. They were discovered.",
+    rigor:"The discovered rules independently reproduce classic risk discipline that took human traders generations to learn — emerging unprompted from the machinery. And because they're readable, they can be audited and challenged by anyone, which is a form of scrutiny black-box systems can never offer.",
+    grow:"Today's rules are deliberately simple so their honesty is easy to verify. Richer rules that stay just as readable are a wide-open direction."},
+  {id:"fvr", g:"deliver", col:3, label:"Fair-value ranking", sub:"the flagship strategy", status:"early",
+    plain:"Rank a whole basket by distance from fair value; lean toward the bargains.",
+    desc:"The strategy everything to the left exists to feed. Rather than betting on the direction of one asset, it sorts an entire basket from most underpriced to most overpriced and tilts toward the bargains — and it can learn how best to weigh Janus's own signals, so the strategy sharpens as the engine does.",
+    rigor:"It is validated under the most hostile conditions we can build: every trade charged full costs, strict past-versus-future separation, and head-to-head comparison against simple benchmarks that are genuinely hard to beat. We mark it early rather than proven because our bar for that word is high — a green light you can trust is worth more than a headline you can't.",
+    grow:"Broader baskets, a steadier fair-value cloud, and the learned signal-weighting are exactly the levers now being worked — this is where the engine's upside concentrates."},
 
-  // ── deliverables (col 4) ────────────────────────────────────────────────────────────
-  {id:"d_crypto", g:"deliver", col:4, label:"Crypto compounder", sub:"the favorite end-product", status:"planned",
-    plain:"A crypto product that quietly compounds using the ranking edge.",
-    desc:"The favorite end-product idea: run the fair-value ranking on crypto, where trading is cheap enough that a slow, steady edge can actually survive the costs.",
-    rigor:"Depends entirely on the ranking edge proving out first — deliberately not started until it does.",
-    grow:"All ahead of us; it's the commercial reason the rest of the machine exists.",
-    files:"PROFIT_ROADMAP"},
-  {id:"d_kalshi", g:"deliver", col:4, label:"Kalshi cashflow", sub:"price bets better than the crowd", status:"working",
-    plain:"Make money on Kalshi by pricing bets better than the crowd.",
-    desc:"Use the fair-value estimator to spot bets on Kalshi that are mispriced, and take the good side. The plumbing to actually place the trades already exists.",
-    rigor:"The live scoring loop is built and running; the honest finding so far is 'no 15-minute edge,' so this waits for a better-suited signal rather than forcing it.",
-    grow:"Repoint it at fair-value and longer-horizon bets instead of 15-minute coin-flips — a change of aim, not a rebuild.",
-    files:"crypto_kalshi.py"},
-  {id:"d_console", g:"deliver", col:4, label:"Operator cockpit", sub:"a human supervises daily", status:"planned",
-    plain:"A cockpit for a person to supervise the strategy day-to-day.",
-    desc:"A visual dashboard that shows each day's picks and proposed trades, retrains itself every day or two, and lets a person edit and approve before anything happens — with alarms when the model is drifting or going stale. The full plan for this is written.",
-    rigor:"Designed to mirror real deployment honestly — rolling retrains, real costs, human oversight — instead of an idealized backtest that never survives contact with reality.",
-    grow:"Fully planned, not yet built — but it's the bridge from 'promising backtest' to 'a real person could actually run this on real money.'",
-    files:"DEPLOYMENT_HARNESS_PLAN.md"},
-  {id:"d_gov", g:"deliver", col:4, label:"CEO-pay data product", sub:"sellable without any trading", status:"planned",
-    plain:"Sell the 'is the CEO's pay earned?' data as its own product.",
-    desc:"A side business that needs no trading at all: rank companies by whether the boss's pay actually tracks how the company performed. ESG funds, proxy advisors and journalists pay for exactly this kind of governance data.",
-    rigor:"Built on the machine-readable pay data the SEC now requires companies to file; a transparent, documented scoring scaffold already exists.",
-    grow:"Needs broader company coverage to be sellable — but the hard extraction work is already done.",
-    files:"incentive_alignment.py"},
-  {id:"d_studio", g:"deliver", col:4, label:"Strategy studio + marketplace", sub:"the consumer vision", status:"planned",
-    plain:"An app where people generate, inspect, and trade strategies.",
-    desc:"The consumer-facing dream: a studio where users spin up strategies, look inside them (they're explainable, not black boxes), and a small marketplace and credit economy grows around sharing them. A playback app for the simulations already exists as the first seed.",
-    rigor:"Rests on the explainability the whole stack is built around — you can show a customer WHY, not just hand them a number and ask for trust.",
-    grow:"Mostly a vision today; the run-viewer and the plain-English rules are the first real bricks in the wall.",
-    files:"umarketsim-viz · presentation/"},
+  // ── products ────────────────────────────────────────────────────────────────────────
+  {id:"d_event", g:"deliver", col:4, label:"Event-market pricing", sub:"price bets better than the crowd", status:"working",
+    plain:"Trade regulated event contracts the crowd has mispriced.",
+    desc:"Pythia's fair-value cloud, aimed at a regulated event exchange: find contracts priced wrong, take the good side. The trading and live-scoring plumbing is already built and running.",
+    rigor:"Every prediction is settled by reality on a regulated venue — the one grader that can't be negotiated with. The system earns its aim honestly: it trades where its measured strengths are, not where the headlines are.",
+    grow:"With the plumbing proven, this product grows by pointing it at the markets and horizons where the cloud is sharpest — a matter of aim, not construction."},
+  {id:"d_comp", g:"deliver", col:4, label:"The compounder", sub:"a steady edge, left to work", status:"planned",
+    plain:"Fair-value ranking deployed where a steady edge compounds undisturbed.",
+    desc:"The favorite end-product: run the flagship strategy where trading is cheap and markets never close, and let a modest, validated edge do what compounding does.",
+    rigor:"Deliberately sequenced after validation — the product launches when the edge has cleared the bar, not before. Discipline about sequencing is itself part of the pitch.",
+    grow:"All ahead of us, by design; it is the commercial reason the rest of the machine exists."},
+  {id:"d_argus", g:"deliver", col:4, label:"Argus console", sub:"a hundred eyes, one operator", status:"planned",
+    plain:"The cockpit where a human supervises Janus day to day.",
+    desc:"Named for the watchman with a hundred eyes: a daily console showing picks, proposed trades, and model health, with a human approving every action before it executes and alarms when anything drifts.",
+    rigor:"Designed to mirror real deployment — rolling updates, real costs, human oversight — rather than the idealized conditions backtests are usually shown in. The full design is written.",
+    grow:"This is the bridge from validated strategy to running capital, and the natural surface for operating partner accounts."},
+  {id:"d_gov", g:"deliver", col:4, label:"Governance intelligence", sub:"sellable without any trading", status:"planned",
+    plain:"Score companies on whether executive pay actually tracks performance.",
+    desc:"A standalone data business that requires no trading at all: rank public companies by how well leadership pay follows results, built from the machine-readable filings regulators now require. ESG funds, proxy advisors, and journalists pay for exactly this.",
+    rigor:"Built on official regulatory data with a transparent, documented scoring method — a product whose customers can check its work, which is precisely why it sells.",
+    grow:"The hard extraction machinery is already built; from here it's a coverage and packaging exercise."},
+  {id:"d_studio", g:"deliver", col:4, label:"Janus Studio", sub:"the consumer vision", status:"planned",
+    plain:"An app where people generate, inspect, and share strategies that explain themselves.",
+    desc:"The consumer-facing horizon: a studio where users create strategies, look inside them — everything Janus produces is readable by design — and a marketplace grows around sharing them. A playback viewer for engine runs already exists as the first seed.",
+    rigor:"Rests on the explainability the entire stack is built around: you can show a customer why, not just hand them a number and ask for trust.",
+    grow:"Mostly vision today — and the run-viewer and plain-language rules are already real, which is more than most visions start with."},
 ];
 
 const LINKS = [
-  // inputs → panel
-  ["crypto","panel","f"],["equities","panel","f"],["edgar","panel","f"],["macro","panel","f"],
-  ["edgar","newscal","f","8-K item codes"],
-  ["newscal","panel","d","shock magnitude by code"],
-  // panel → engines
-  ["panel","pop","f"],["panel","encoder","f","multi-res channels"],
-  // fastpop internal
-  ["pop","policy","f"],["policy","lob","f","order intents"],["lob","pop","d","fills → adapt"],
-  ["calib","pop","d","fits knobs to real stylized facts"],
-  ["newscal","pop","d","event-day vol bursts"],
-  // umarket internal
-  ["encoder","cloud","f","latent → fan"],["encoder","robusthead","f"],
-  // cross-engine
-  ["pop","encoder","d","fusion corpus warm-start"],
-  ["pop","distill","f","winner traces + PnL"],
-  ["cloud","fvr","f","fair-value median"],
-  ["distill","fvr","d","sizing + selection rules"],
-  // signal → deliverables
-  ["fvr","d_crypto","f"],["cloud","d_kalshi","f","prob_above/prob_up"],
-  ["fvr","d_console","f"],["edgar","d_gov","f","exec-comp facts"],
-  ["cloud","d_studio","f"],["distill","d_studio","f"],
-  ["kalshi","d_kalshi","f","resolutions ↔ validation"],
-  ["cloud","kalshi","d","predictions logged"],
+  // reality → foundation
+  ["equities","ledger","f"],["crypto","ledger","f"],["edgar","ledger","f"],["macro","ledger","f"],
+  ["edgar","newscal","f","disclosed events"],
+  ["newscal","ledger","d","measured event weight"],
+  // foundation → the two faces
+  ["ledger","agora","f"],["ledger","pythia","f"],
+  // Agora internal
+  ["tuning","agora","d","tunes rehearsal to reality"],
+  ["newscal","agora","d","event-day turbulence"],
+  // the dialogue between the faces
+  ["agora","pythia","d","rehearsal head start"],
+  // Pythia internal
+  ["pythia","cloud","f","situation → value"],
+  // distilled intelligence
+  ["agora","rules","f","winning behavior"],
+  ["cloud","fvr","f","fair value"],
+  ["rules","fvr","d","discipline"],
+  // intelligence → products
+  ["fvr","d_comp","f"],["cloud","d_event","f","contract pricing"],
+  ["fvr","d_argus","f"],["edgar","d_gov","f","pay & performance facts"],
+  ["cloud","d_studio","f"],["rules","d_studio","f"],
+  ["kalshi","d_event","f","real-money settlement"],
+  ["cloud","kalshi","d","predictions logged live"],
 ];
 
 // ── layout ─────────────────────────────────────────────────────────────────────────────
 const COLX = [140, 400, 700, 1010, 1300];
-const COLHEAD = ["REAL-WORLD INPUTS","SHARED WORLD-MODEL","THE TWO ENGINES","DISTILLED SIGNAL","DELIVERABLES"];
+const COLHEAD = ["MARKET REALITY","THE FOUNDATION","THE TWO FACES","DISTILLED INTELLIGENCE","PRODUCTS"];
 const NW=176, NH=46, VGAP=20;
 const byCol = {};
 NODES.forEach(n=>{(byCol[n.col]=byCol[n.col]||[]).push(n)});
@@ -372,8 +332,7 @@ function showDetail(n){
     sec('In plain terms','#8b949e')+`<p>${n.desc||''}</p>`+
     (n.rigor?sec('Why you can trust it','#3fb950')+`<p>${n.rigor}</p>`:'')+
     (n.grow?sec('Room to grow','#e3b341')+`<p class="grow">${n.grow}</p>`:'')+
-    sec('How it connects','#58a6ff')+`<p class="hint">${describeEdges(n.id)}</p>`+
-    `<div class="files">${n.files}</div>`;
+    sec('How it connects','#58a6ff')+`<p class="hint">${describeEdges(n.id)}</p>`;
 }
 function describeEdges(id){
   const inc=LINKS.filter(L=>L[1]===id), out=LINKS.filter(L=>L[0]===id);
@@ -386,12 +345,12 @@ function resetDetail(){
   const bar=Object.entries(STATUS).map(([k,v])=>
     `<span style="color:${v.color};font-weight:700">${c[k]} ${v.label.toLowerCase()}</span>`).join(' · ');
   document.getElementById('detail').innerHTML=
-   `<h1>How this machine works</h1>`+
-   `<div class="plain">Real-world data comes in on the left. It flows through two cooperating simulators, gets boiled down into plain-English rules and fair-value estimates, and turns into products on the right.</div>`+
-   `<p>You don't need to be technical to read this. Follow the arrows left→right — that's the journey from "raw data" to "something we can sell." <b>Hover</b> any box to see, in plain language, what it is, why you can trust it, and how much better it could still get. <b>Click</b> to pin it here.</p>`+
-   `<div class="sec"><span class="bar" style="background:#e3b341"></span>The honest picture</div>`+
-   `<p>Every box is color-dotted by how far along it is:<br>${bar}.<br><br>Notice how much is still <span style="color:#8b949e;font-weight:700">planned</span> or <span style="color:#e3b341;font-weight:700">early</span> — that's the point. The <span style="color:#3fb950;font-weight:700">green</span> pieces are validated with real, sometimes self-disproving tests (we killed our own 15-minute trading idea on the evidence). The foundation is rigorous and explainable; the upside is largely still ahead of us.</p>`+
-   `<p class="hint">Solid arrows carry data. Dashed arrows are one part <i>acting on</i> another (a tuning loop, a shock being applied). Toggle groups (top-left) or maturity (bottom-left) to filter.</p>`;
+   `<h1>How the machine works</h1>`+
+   `<div class="plain">Real markets come in on the left, flow through the two faces of Janus, get distilled into fair value and readable rules, and become products on the right.</div>`+
+   `<p>You don't need to be technical to read this. Follow the arrows left→right — that's the journey from raw market reality to something customers pay for. <b>Hover</b> any box to see, in plain language, what it is, why you can trust it, and how much better it can still get. <b>Click</b> to pin it here.</p>`+
+   `<div class="sec"><span class="bar" style="background:#e3b341"></span>Reading the lights</div>`+
+   `<p>Every box carries a maturity light:<br>${bar}.<br><br>The <span style="color:#3fb950;font-weight:700">green</span> pieces survived tests whose pass/fail bar was declared before the test ran — including live, real-money scoring on a regulated exchange. That discipline is why the amount still marked <span style="color:#8b949e;font-weight:700">planned</span> or <span style="color:#e3b341;font-weight:700">early</span> should read as unpriced upside: when this system calls something proven, the word has been made to mean something first.</p>`+
+   `<p class="hint">Solid arrows carry data. Dashed arrows are one part shaping another (a tuning loop, an event shock, a rehearsal head start). Toggle groups (top-left) or maturity (bottom-left) to filter.</p>`;
 }
 
 // ── legend / group toggle ──────────────────────────────────────────────────────────────

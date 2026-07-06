@@ -1,6 +1,6 @@
 # Aril
 
-Pre-launch product site for **Aril** — generative market intelligence.
+Pre-launch product site for **Aril** and **Janus**, Aril's market engine.
 
 **Live site:** [davisdevelopment.github.io/aril](https://davisdevelopment.github.io/aril/)
 

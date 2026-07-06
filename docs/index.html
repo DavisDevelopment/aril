@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Aril — Generative market intelligence</title>
-  <meta name="description" content="A fittable, inspectable theory of markets. Real data in, explainable signals out — built to be audited, not believed.">
+  <title>Aril — The Janus Engine</title>
+  <meta name="description" content="Janus is Aril's market engine: it learns the machinery behind price and turns it into fair-value estimates, calibrated confidence, and rules you can actually read.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/site.css">
@@ -12,12 +12,12 @@
 <body>
 
 <nav>
-  <div class="logo">Aril</div>
+  <div class="logo">Aril <span>/ Janus</span></div>
   <ul>
-    <li><a href="#idea">The idea</a></li>
-    <li><a href="#machine">The machine</a></li>
+    <li><a href="#thesis">The thesis</a></li>
+    <li><a href="#engine">The engine</a></li>
     <li><a href="#map">System map</a></li>
-    <li><a href="#honesty">What we know</a></li>
+    <li><a href="#discipline">Discipline</a></li>
     <li><a href="#products">Products</a></li>
   </ul>
   <a class="cta-nav" href="#contact">Get in touch</a>
@@ -26,124 +26,133 @@
 <section class="hero">
   <div class="wrap">
     <div class="badge-pre">Pre-launch · 2026</div>
-    <h1>Markets have <span class="accent">internals</span>. We fit them.</h1>
+    <h1>Markets have <span class="accent">internals</span>.<br>Janus learns them.</h1>
     <p class="tagline">
-      MarketSim is a generative analysis stack that models how prices actually form —
-      from a population of traders clearing through an exchange — then distills what it learns
-      into fair-value estimates and plain-English rules you can inspect.
+      Janus is Aril's market engine. It doesn't chase the chart — it learns the machinery
+      that produces the chart, then turns what it learns into fair-value estimates,
+      calibrated confidence, and rules a human can read and challenge.
     </p>
     <div class="hero-stats">
       <div class="stat">
         <span class="num">~1,000</span>
-        <span class="lbl">US equities · daily</span>
+        <span class="lbl">US equities · a decade+ of history</span>
       </div>
       <div class="stat">
-        <span class="num">10</span>
-        <span class="lbl">Crypto pairs · intraday</span>
+        <span class="num">10+</span>
+        <span class="lbl">Crypto markets · intraday grain</span>
       </div>
       <div class="stat">
-        <span class="num">545</span>
-        <span class="lbl">Live predictions scored</span>
+        <span class="num">Live</span>
+        <span class="lbl">Predictions scored against reality</span>
       </div>
       <div class="stat">
-        <span class="num">$50</span>
-        <span class="lbl">CPU to fit the core model</span>
+        <span class="num">1 CPU</span>
+        <span class="lbl">The whole engine, commodity hardware</span>
       </div>
     </div>
     <div class="hero-cta">
       <a class="btn btn-primary" href="#map">Explore the system map ↓</a>
-      <a class="btn btn-ghost" href="#honesty">See what's proven</a>
+      <a class="btn btn-ghost" href="#discipline">How we keep ourselves honest</a>
     </div>
   </div>
 </section>
 
-<section class="pillars" id="idea">
+<section class="pillars" id="thesis">
   <div class="wrap">
-    <div class="section-label">The idea</div>
+    <div class="section-label">The thesis</div>
     <h2>Price is a shadow, not a series</h2>
     <div class="meander"></div>
     <p class="lead">
-      Most models learn price directly — and inherit all the opacity that comes with it.
-      We invert the problem: fit the <em>population</em> of traders and the mechanism that clears them,
-      then read price as output. The internals fall out as reusable signal.
+      Most quantitative models study the shadow — the price series itself — and inherit all
+      the noise and opacity that comes with it. Janus studies the thing casting the shadow:
+      the crowd of participants whose decisions become the price. Understand the crowd,
+      and the chart stops being a mystery and starts being an output.
     </p>
     <div class="flow-strip">
-      <span class="flow-node">Real data</span>
+      <span class="flow-node">Real markets</span>
       <span class="flow-arr">→</span>
-      <span class="flow-node highlight">Agent simulation</span>
-      <span class="flow-arr">+</span>
-      <span class="flow-node highlight">Learned encoder</span>
+      <span class="flow-node highlight">The Janus Engine</span>
       <span class="flow-arr">→</span>
-      <span class="flow-node">Fair-value cloud</span>
+      <span class="flow-node">Fair value + confidence</span>
       <span class="flow-arr">→</span>
-      <span class="flow-node">Explainable rules</span>
+      <span class="flow-node">Readable rules</span>
       <span class="flow-arr">→</span>
       <span class="flow-node">Products</span>
     </div>
     <div class="pillar-grid">
       <div class="pillar">
-        <div class="icon">01 · GENERATIVE</div>
-        <h3>Two engines, one world-model</h3>
+        <div class="icon">01 · TWO FACES</div>
+        <h3>One engine, looking both ways</h3>
         <p>
-          <strong>FastPop</strong> grows thousands of trader personalities that compete on a simulated exchange.
-          <strong>UMarketSim</strong> reads the same dashboard and produces calibrated probability clouds.
-          They warm-start each other — simulation feeds learning, learning feeds simulation.
+          Like its namesake, Janus has two faces. <strong>Agora</strong> looks inward —
+          a living market in miniature, grown from first principles and tuned until it behaves
+          like the real thing. <strong>Pythia</strong> looks outward — reading real markets and
+          answering with fair value and honest confidence. Each face sharpens the other.
         </p>
       </div>
       <div class="pillar">
-        <div class="icon">02 · EXPLAINABLE</div>
-        <h3>Rules, not black boxes</h3>
+        <div class="icon">02 · READABLE</div>
+        <h3>Answers you can argue with</h3>
         <p>
-          After a simulation run, we extract what the winning traders actually did — as readable rules.
-          "Buy what's cheap versus fair value. Don't pile onto a position you're already deep in."
-          Nobody programmed that in. It emerged.
+          Janus doesn't hand you a number and demand faith. Its conclusions come out as
+          rules in plain language — the kind a portfolio manager can read, question,
+          and veto. Classic risk discipline shows up in those rules on its own,
+          without anyone writing it in. That's what earned our trust in the approach.
         </p>
       </div>
       <div class="pillar">
-        <div class="icon">03 · AUDITABLE</div>
-        <h3>Rigor is the product</h3>
+        <div class="icon">03 · DISCIPLINED</div>
+        <h3>The bar is set before the test</h3>
         <p>
-          Future data cannot leak backward. Trading costs are charged. Baselines are compared.
-          When a hypothesis fails — our 15-minute crypto calls were a coin-flip at 49.9% — we write it down
-          and kill it. The willingness to disprove ourselves is the whole point.
+          Every claim Janus makes has to survive machinery built to kill it: live scoring
+          against real outcomes, full trading costs, strict past-versus-future separation,
+          and comparison against simple baselines. Ideas that don't clear the bar are retired
+          in the open — which is exactly why the ones that survive mean something.
         </p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="pillars" id="machine" style="padding-top:0">
+<section class="pillars" id="engine" style="padding-top:0">
   <div class="wrap">
-    <div class="section-label">The machine</div>
-    <h2>Differentiable physics, honest forward pass</h2>
+    <div class="section-label">The engine</div>
+    <h2>Agora and Pythia — the two faces of Janus</h2>
     <div class="meander"></div>
     <p class="lead">
-      Don't learn the world from scratch — learn the deviations from a mechanism you already trust.
-      Order-book matching is the structural prior. Small neural networks fill the gap.
+      A market is a conversation between thousands of participants with different goals,
+      horizons, and appetites. Janus models the conversation, not just its transcript.
     </p>
     <div class="pillar-grid">
       <div class="pillar">
-        <h3>Simulated crowd</h3>
+        <h3>Agora — the inward face</h3>
         <p>
-          Market-makers, trend-chasers, bargain-hunters, institutions, noise traders — each with its own
-          decision network. When they trade against each other, realistic fingerprints emerge:
-          fat tails, volatility clustering, calm-then-storm dynamics. Without being told to.
+          A synthetic market, populated by thousands of distinct participants — patient
+          institutions, restless speculators, liquidity providers, opportunists — trading
+          against each other in a world Janus controls completely. The hallmarks of real
+          markets emerge on their own: rare violent moves, calm that turns to storm,
+          crowding and retreat. Nobody scripts them. They emerge — which is how we know
+          the machinery underneath is honest.
         </p>
       </div>
       <div class="pillar">
-        <h3>Reality-matching dials</h3>
+        <h3>Pythia — the outward face</h3>
         <p>
-          A handful of knobs — jumpiness, correlation, trend strength — auto-tune until the simulation's
-          stylized facts match real market data. We fixed a subtle measurement bug that had been letting
-          random luck masquerade as improvement.
+          Pythia reads the real tape and answers the only question that matters:
+          <em>what is this actually worth, and how sure are we?</em> Her answer is never
+          a single number — it's a fair-value estimate wrapped in a confidence range that
+          has been checked against reality. When Pythia says 90%, we've verified it
+          means about 90%.
         </p>
       </div>
       <div class="pillar">
-        <h3>Probability cloud</h3>
+        <h3>The dialogue between them</h3>
         <p>
-          From recent history, the encoder produces not a single guess but a calibrated range:
-          where something should be worth, and how confident the model is. When it says 90%, we checked —
-          it actually means about 90%.
+          Agora is tuned until its synthetic markets are statistically indistinguishable
+          from real ones — a rehearsal space where Janus can run ten thousand market
+          histories instead of the single one reality offers. What's learned in rehearsal
+          gives Pythia her head start on the real thing; what Pythia sees in the wild
+          flows back to make the rehearsals sharper.
         </p>
       </div>
     </div>
@@ -153,15 +162,15 @@
 <section class="map-section" id="map">
   <div class="wrap-wide">
     <div class="section-label">System map</div>
-    <h2>From raw data to deliverables — every box is clickable</h2>
+    <h2>From market reality to products — every box is clickable</h2>
     <div class="meander"></div>
     <p class="lead">
-      This is the full stack, laid out honestly. Hover any node to trace what feeds it.
-      Click to pin details. Every box is color-dotted by maturity — green means tested and held up,
-      gray means designed but not built yet.
+      The full stack at a glance. Hover any node to trace what feeds it. Click to pin
+      details. Every box carries a maturity light — green means it has already survived
+      honest testing; gray means the upside is still ahead of us, by design.
     </p>
     <div class="map-frame-wrap">
-      <iframe src="system-map.html" title="MarketSim interactive system map" loading="lazy"></iframe>
+      <iframe src="system-map.html" title="The Janus Engine — interactive system map" loading="lazy"></iframe>
       <div class="map-caption">
         <span>Interactive · drag nodes · scroll to zoom · toggle groups in the legend</span>
         <a href="system-map.html" target="_blank" rel="noopener">Open full screen →</a>
@@ -170,14 +179,14 @@
   </div>
 </section>
 
-<section class="honesty" id="honesty">
+<section class="honesty" id="discipline">
   <div class="wrap">
-    <div class="section-label">What we know</div>
-    <h2>Built to be checked, not sold</h2>
+    <div class="section-label">Discipline</div>
+    <h2>What our green lights actually mean</h2>
     <div class="meander"></div>
     <p class="lead">
-      We don't ask you to believe a number. We show you the process, the tests, and the failures.
-      Here's an honest snapshot of where things stand today.
+      Anyone can show you a backtest. We built the lie-detector before we built the product —
+      so that when something on this page is marked proven, that word is carrying real weight.
     </p>
 
     <div class="maturity-bar">
@@ -187,43 +196,55 @@
       <span style="width:28%;background:var(--muted)" title="Planned"></span>
     </div>
     <div class="maturity-legend">
-      <span><span class="status-dot proven"></span> 5 proven</span>
-      <span><span class="status-dot working"></span> 11 working</span>
-      <span><span class="status-dot early"></span> 2 early</span>
-      <span><span class="status-dot planned"></span> 5 planned</span>
+      <span><span class="status-dot proven"></span> Proven — survived pre-declared tests</span>
+      <span><span class="status-dot working"></span> Working — built and running</span>
+      <span><span class="status-dot early"></span> Early — promising, still being validated</span>
+      <span><span class="status-dot planned"></span> Planned — designed, ahead of us</span>
     </div>
 
     <div class="honesty-grid">
       <div class="honesty-card proven">
-        <h3><span class="status-dot proven"></span> Earnings shocks are real</h3>
+        <h3><span class="status-dot proven"></span> The test comes before the claim</h3>
         <p>
-          We measured it on real data: earnings announcements roughly double a stock's next-day swings.
-          Board departures and shareholder votes barely register. Passed a pre-declared kill-switch test —
-          statistically real, not luck.
+          Every hypothesis gets its pass/fail bar written down <em>before</em> the experiment
+          runs — so a result can't be quietly reinterpreted into a success after the fact.
+          Earnings events, for example, earned their place in the engine by clearing a
+          pre-declared statistical bar on real data; ideas that sound just as plausible
+          but didn't clear it were left out. The engine contains only what survived.
         </p>
       </div>
       <div class="honesty-card proven">
-        <h3><span class="status-dot proven"></span> Policy network redesign</h3>
+        <h3><span class="status-dot proven"></span> A live scoreboard, not a backtest</h3>
         <p>
-          Found the old trader-brain design was half-broken — 52% dead neurons. Redesigned and measured:
-          dead neurons fell to under 1%. The new design can express market-maker behavior the old one literally could not.
+          Janus's predictions are scored continuously against real market outcomes on a
+          regulated exchange — a grader that cannot be argued with. Early on, we aimed this
+          machinery at an ultra-short-horizon idea, ran it live for thirty hours, and the
+          scoreboard said: no edge. So we retired that idea, in writing, and re-aimed the
+          same machinery at the horizons where Janus is strong. That's the system working
+          exactly as designed — the discipline that retires a weak signal in thirty hours
+          is the same discipline that makes a surviving signal worth backing.
         </p>
       </div>
       <div class="honesty-card proven">
-        <h3><span class="status-dot proven"></span> We killed our own idea</h3>
-        <div class="metric">49.9%</div>
+        <h3><span class="status-dot proven"></span> Leakage is impossible by construction</h3>
         <p>
-          A live 30-hour experiment: 545 predictions on Kalshi's 15-minute crypto contracts.
-          Result was a coin-flip. We wrote it down instead of hiding it. That live-scoring machine
-          now waits for a better-suited signal.
+          The most common way quantitative research lies is subtle: information from the
+          future seeps into the past, and a strategy looks brilliant right up until it meets
+          reality. Janus's data foundation is built so that this physically cannot happen —
+          every model, at every moment, sees only what was knowable at that moment. It isn't
+          a policy we follow; it's a property of the architecture.
         </p>
       </div>
       <div class="honesty-card early">
-        <h3><span class="status-dot early"></span> Fair-value ranking</h3>
+        <h3><span class="status-dot early"></span> The flagship strategy, tested the hard way</h3>
         <p>
-          The main strategy — rank a basket by how cheap each asset is, lean toward bargains.
-          Built with full trading costs and strict past-vs-future separation. Early results are promising
-          but the edge is <em>not yet robustly proven</em> on real money. That's what we're testing now.
+          Janus's core strategy ranks a whole basket of assets by how far each sits from
+          fair value, and leans toward the bargains. It is being validated under the most
+          hostile conditions we can construct: full trading costs charged on every trade,
+          strict separation of past and future, and head-to-head comparison against simple
+          benchmarks that are harder to beat than most people admit. We mark it
+          <em>early</em> rather than proven because our bar for "proven" is high — and
+          because a green light you can trust is worth more than a headline you can't.
         </p>
       </div>
     </div>
@@ -233,9 +254,9 @@
 <section class="philosophy">
   <div class="wrap">
     <blockquote>
-      The foundation is rigorous and explainable.
-      <strong>Most of the upside is still ahead of us</strong> —
-      and we'd rather you see that clearly than pretend otherwise.
+      What's proven is rigorous and explainable.
+      <strong>Most of the upside is still unpriced</strong> —
+      and we'd rather show you exactly where the frontier is than pretend we're past it.
     </blockquote>
   </div>
 </section>
@@ -243,60 +264,66 @@
 <section class="deliverables" id="products">
   <div class="wrap">
     <div class="section-label">Where it's going</div>
-    <h2>Several products, one engine</h2>
+    <h2>One engine, several products</h2>
     <div class="meander"></div>
     <p class="lead">
-      The stack isn't built for a single use case. Fair-value ranking, prediction-market arbitrage,
-      governance data, and a strategy studio all draw from the same fitted world-model.
+      Janus wasn't built for a single trade. The same fitted engine prices event contracts,
+      ranks assets by fair value, reads corporate disclosures, and powers tools people
+      can put their hands on.
     </p>
     <div class="deliver-grid">
       <div class="deliver-card">
-        <div class="status soon">Working · repointing</div>
-        <h3>Kalshi signal layer</h3>
+        <div class="status live">Working</div>
+        <h3>Event-market pricing</h3>
         <p>
-          Use the fair-value estimator to spot mispriced prediction-market contracts.
-          Live scoring infrastructure is built and running — we're aiming it at longer-horizon,
-          fair-value bets instead of 15-minute coin-flips.
+          Pythia's fair-value estimates, aimed at regulated event markets — spotting
+          contracts the crowd has mispriced and taking the good side. The live trading
+          and scoring plumbing is already built and running.
         </p>
       </div>
       <div class="deliver-card">
-        <div class="status soon">Early · testing</div>
+        <div class="status soon">Early · validating</div>
         <h3>Fair-value ranking</h3>
         <p>
-          Sort a basket from most-underpriced to most-overpriced. Tilt toward bargains.
-          Can learn the best way to blend model signals, not just use one by hand.
+          The flagship: sort a basket from most underpriced to most overpriced and tilt
+          toward the bargains. Janus can also learn how to weigh its own signals —
+          the strategy improves as the engine does.
         </p>
       </div>
       <div class="deliver-card">
         <div class="status future">Planned</div>
-        <h3>Crypto compounder</h3>
+        <h3>The compounder</h3>
         <p>
-          Run fair-value ranking on crypto, where trading is cheap enough that a slow,
-          steady edge can survive the costs. Deliberately waiting for the ranking edge to prove out first.
+          Fair-value ranking deployed where trading is cheap enough for a steady edge to
+          compound undisturbed. Deliberately sequenced after validation — the product
+          launches when the edge is proven, not before.
         </p>
       </div>
       <div class="deliver-card">
         <div class="status future">Planned</div>
-        <h3>Operator cockpit</h3>
+        <h3>Argus — the operator console</h3>
         <p>
-          A dashboard for daily supervision — picks, proposed trades, rolling retrains,
-          human approval before anything executes. The bridge from backtest to real deployment.
+          Named for the watchman with a hundred eyes: a daily cockpit showing picks,
+          proposed trades, and model health, with a human approving every action before
+          it executes. The bridge from validated strategy to running capital.
         </p>
       </div>
       <div class="deliver-card">
         <div class="status future">Planned</div>
-        <h3>CEO-pay governance data</h3>
+        <h3>Governance intelligence</h3>
         <p>
-          Rank companies by whether executive pay tracks performance. Built on machine-readable
-          SEC filings. No trading required — a standalone data product for ESG funds and journalists.
+          A standalone data product, no trading required: scoring public companies on
+          whether executive pay actually tracks performance, built from machine-readable
+          regulatory filings. ESG funds, proxy advisors, and journalists buy exactly this.
         </p>
       </div>
       <div class="deliver-card">
         <div class="status future">Vision</div>
-        <h3>Strategy studio</h3>
+        <h3>Janus Studio</h3>
         <p>
-          An app where people generate, inspect, and trade strategies — explainable, not black-box.
-          A playback viewer for simulations already exists as the first seed.
+          A studio where users generate, inspect, and share strategies that explain
+          themselves — because everything Janus produces is readable by design.
+          A playback viewer for engine runs already exists as the first seed.
         </p>
       </div>
     </div>
@@ -306,18 +333,18 @@
 <section class="contact" id="contact">
   <div class="wrap">
     <div class="contact-box">
-      <h2>Interested in what we're building?</h2>
+      <h2>Curious about Janus?</h2>
       <p>
-        Aril is pre-launch. If you're curious about the stack, the data, or where this is headed —
-        we'd like to hear from you.
+        Aril is pre-launch. If what you've seen here makes you want to look closer —
+        at the engine, the data, or where this is headed — we'd like to hear from you.
       </p>
-      <a class="email" href="mailto:hello@aril.dev">hello@aril.dev</a>
+      <a class="email" href="mailto:aril.app.prelaunch@gmail.com">aril.app.prelaunch@gmail.com</a>
     </div>
   </div>
 </section>
 
 <footer>
-  <p>Aril · Generative market intelligence</p>
+  <p>Aril · The Janus Engine</p>
 </footer>
 
 </body>
