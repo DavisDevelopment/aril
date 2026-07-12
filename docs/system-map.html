@@ -121,11 +121,11 @@ const NODES = [
     desc:"Every US public company files with the regulator: earnings, insider trades, and sudden material events. Kestrel reads these filings automatically and turns them into structured facts — the layer of corporate reality that sits underneath the price.",
     rigor:"Drawn directly from the regulator's own official, public systems. The reader is built to know what it knows: anything it can't confidently interpret is flagged rather than guessed at, so the fact base stays clean.",
     grow:"The extraction machinery is the hard part, and it's built. Widening company coverage from here is a straightforward scaling exercise that deepens the corporate-reality layer under every equity."},
-  {id:"kalshi", g:"input", col:0, label:"Live scoreboard", sub:"regulated event market", status:"working",
-    plain:"A regulated, real-money market that grades our predictions in public.",
-    desc:"A US-regulated exchange for event contracts serves Kestrel two ways: as a venue where mispriced contracts can be traded profitably, and as an incorruptible grader — every prediction Kestrel logs there gets scored against what actually happened, with real money keeping everyone honest.",
-    rigor:"This is the sharpest validation instrument in the whole system: outcomes are settled by reality, not by our own evaluation code. Predictions are logged before the fact and scored after — there is no way to flatter the results.",
-    grow:"The scoring machinery is built and running. As Kestrel's strengths are mapped, the same machinery aims at whichever markets and horizons offer the best-priced opportunities."},
+  {id:"kalshi", g:"input", col:0, label:"Live outcome log", sub:"the app scores its own picks", status:"working",
+    plain:"A forward log: every recommendation is scored against what actually happened.",
+    desc:"The app keeps a live scoreboard of its own recommendations. Each pick is logged the moment it's shown and later scored against the real outcome — measured relative to the market, so a rising tide can't flatter it. It is the ground truth the engine keeps checking itself against.",
+    rigor:"A forward log is the one record that can't be re-tuned after the fact. Predictions are written down before the outcome is known and scored after — there is no way to flatter the results. When a signal fails here, it's retired in writing rather than quietly re-framed.",
+    grow:"The scoring machinery is built and running, and it feeds the on-device iteration loop directly — the app learns from its own live track record, not just from history."},
   {id:"macro", g:"input", col:0, label:"Macro backdrop", sub:"rates · inflation · calendar", status:"early",
     plain:"The big-picture economic weather.",
     desc:"Markets move with their backdrop — interest rates, inflation, the fiscal calendar. The ingestion pipeline (FRED, BLS, Treasury) is built; wiring a committed macro panel into the ledger is the remaining step.",
@@ -181,11 +181,11 @@ const NODES = [
     grow:"Live deployment is the next bar. The signal→book translation — trading only when a name moves enough to be worth the cost — is what let the edge survive; sharpening that, and a steadier cloud beneath it, is where the upside now concentrates."},
 
   // ── products ────────────────────────────────────────────────────────────────────────
-  {id:"d_event", g:"deliver", col:4, label:"Event-market pricing", sub:"price bets better than the crowd", status:"working",
-    plain:"Trade regulated event contracts the crowd has mispriced.",
-    desc:"Pythia's fair-value cloud, aimed at a regulated event exchange: find contracts priced wrong, take the good side. The trading and live-scoring plumbing is already built and running.",
-    rigor:"Every prediction is settled by reality on a regulated venue — the one grader that can't be negotiated with. The system earns its aim honestly: it trades where its measured strengths are, not where the headlines are.",
-    grow:"With the plumbing proven, this product grows by pointing it at the markets and horizons where the cloud is sharpest — a matter of aim, not construction."},
+  {id:"d_event", g:"deliver", col:4, label:"Linked-account execution", sub:"your account follows the book", status:"working",
+    plain:"Link a brokerage account; the app makes it follow the strategy's book.",
+    desc:"Connect a brokerage account and it tracks the strategy's book automatically — the app places the trades to match, inside a hard risk envelope you set: total budget, per-name caps, and a kill switch. Kraken and Robinhood links are built and running today.",
+    rigor:"Nothing places an order that violates the risk envelope, and the kill switch blocks deployment outright — the bridge from a simulated strategy to real positions is gated by conservative, user-set limits, not trust.",
+    grow:"The bridge exists and executes today. It grows toward richer sync, more venues, and a supervised deploy loop (see Argus) — the hard part, turning a validated strategy into real, risk-bounded positions, is already done."},
   {id:"d_comp", g:"deliver", col:4, label:"The compounder", sub:"a steady edge, left to work", status:"planned",
     plain:"Fair-value ranking deployed where a steady edge compounds undisturbed.",
     desc:"The favorite end-product: run the flagship strategy where trading is cheap and markets never close, and let a modest, validated edge do what compounding does.",
@@ -232,13 +232,13 @@ const LINKS = [
   ["cloud","fvr","f","fair value"],
   ["rules","fvr","d","discipline"],
   // intelligence → products
-  ["fvr","d_comp","f"],["cloud","d_event","f","contract pricing"],
+  ["fvr","d_comp","f"],["cloud","d_event","f"],
   ["fvr","d_argus","f"],
   ["cloud","d_studio","f"],["rules","d_studio","f"],
   ["cloud","d_mobile","f"],["rules","d_mobile","f"],
   ["rules","forge","f","readable rules"],["fvr","forge","d","edit the flagship"],["forge","d_studio","d","first piece"],
-  ["kalshi","d_event","f","real-money settlement"],
-  ["cloud","kalshi","d","predictions logged live"],
+  ["fvr","d_event","f","the strategy's book"],
+  ["fvr","kalshi","d","picks logged & scored"],
 ];
 
 // ── layout ─────────────────────────────────────────────────────────────────────────────
@@ -356,7 +356,7 @@ function resetDetail(){
    `<div class="plain">Real markets come in on the left, flow through the two eyes of Kestrel, get distilled into fair value and readable rules, and become products on the right.</div>`+
    `<p>You don't need to be technical to read this. Follow the arrows left→right — that's the journey from raw market reality to something customers pay for. <b>Hover</b> any box to see, in plain language, what it is, why you can trust it, and how much better it can still get. <b>Click</b> to pin it here.</p>`+
    `<div class="sec"><span class="bar" style="background:#e3b341"></span>Reading the lights</div>`+
-   `<p>Every box carries a maturity light:<br>${bar}.<br><br>The <span style="color:#3fb950;font-weight:700">green</span> pieces survived tests whose pass/fail bar was declared before the test ran — including live, real-money scoring on a regulated exchange. That discipline is why the amount still marked <span style="color:#8b949e;font-weight:700">planned</span> or <span style="color:#e3b341;font-weight:700">early</span> should read as unpriced upside: when this system calls something proven, the word has been made to mean something first.</p>`+
+   `<p>Every box carries a maturity light:<br>${bar}.<br><br>The <span style="color:#3fb950;font-weight:700">green</span> pieces survived tests whose pass/fail bar was declared before the test ran — walk-forward validation under full costs, and a live forward log the app scores itself against. That discipline is why the amount still marked <span style="color:#8b949e;font-weight:700">planned</span> or <span style="color:#e3b341;font-weight:700">early</span> should read as unpriced upside: when this system calls something proven, the word has been made to mean something first.</p>`+
    `<p class="hint">Solid arrows carry data. Dashed arrows are one part shaping another (a tuning loop, an event shock, a rehearsal head start). Toggle groups (top-left) or maturity (bottom-left) to filter.</p>`;
 }
 
