@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>The Janus Engine — Interactive System Map</title>
+<title>The Kestrel Engine — Interactive System Map</title>
 <style>
   :root{
     --bg:#0b0812; --panel:#171122; --edge:#2c2044; --text:#ece7f4; --muted:#9a8fb2;
@@ -69,13 +69,13 @@
     <svg id="svg"></svg>
     <div id="legend"></div>
     <div id="matkey"></div>
-    <div id="title"><b>The Janus Engine — System Map</b><br><span>hover a node · click to pin · drag to move · scroll to zoom</span></div>
+    <div id="title"><b>The Kestrel Engine — System Map</b><br><span>hover a node · click to pin · drag to move · scroll to zoom</span></div>
   </div>
   <div id="side">
     <div id="detail">
       <h1>How the machine works</h1>
-      <p class="hint">Real markets come in on the left. They flow through the two faces of
-      Janus — Agora, the market grown in rehearsal, and Pythia, the reader of the real tape —
+      <p class="hint">Real markets come in on the left. They flow through the two eyes of
+      Kestrel — Agora, the market grown in rehearsal, and Pythia, the reader of the real tape —
       get distilled into fair value and readable rules, and become products on the right.<br><br>
       <b>Hover</b> any node to trace what feeds it and what it feeds. <b>Click</b> to pin its
       details here. Dashed edges are <i>influence</i> (one part shaping another), solid edges are
@@ -88,8 +88,8 @@
 const GROUPS = {
   input:  {name:"Market reality", color:getVar('--input')},
   shared: {name:"The foundation", color:getVar('--shared')},
-  agora:  {name:"Agora — inward face", color:getVar('--agora')},
-  pythia: {name:"Pythia — outward face", color:getVar('--pythia')},
+  agora:  {name:"Agora — inward eye", color:getVar('--agora')},
+  pythia: {name:"Pythia — outward eye", color:getVar('--pythia')},
   deliver:{name:"Products", color:getVar('--deliver')},
 };
 function getVar(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim()}
@@ -108,7 +108,7 @@ const NODES = [
   // ── market reality ──────────────────────────────────────────────────────────────────
   {id:"equities", g:"input", col:0, label:"Equity markets", sub:"~1,000 US names · 2013→today", status:"proven",
     plain:"A decade-plus of real daily history for about a thousand US stocks.",
-    desc:"The deep end of the data pool: real closing prices for roughly a thousand US equities, spanning more than a decade and running right up to the present. Janus never learns from invented data — every bar in this archive is something that actually traded.",
+    desc:"The deep end of the data pool: real closing prices for roughly a thousand US equities, spanning more than a decade and running right up to the present. Kestrel never learns from invented data — every bar in this archive is something that actually traded.",
     rigor:"Real, verifiable market history with documented provenance. Where the archive has known limitations, they're recorded alongside the data rather than papered over — so results are always read with the right context.",
     grow:"A thousand names is a strong start; the same pipeline extends naturally to broader universes and international markets as the products demand them."},
   {id:"crypto", g:"input", col:0, label:"Crypto markets", sub:"10+ pairs · intraday + daily", status:"working",
@@ -118,14 +118,14 @@ const NODES = [
     grow:"Coverage widens on demand: more pairs, finer grain, and richer market detail are all straightforward extensions of the same pipeline."},
   {id:"edgar", g:"input", col:0, label:"Regulatory disclosures", sub:"earnings · insiders · events", status:"proven",
     plain:"What public companies must legally disclose — turned into clean, searchable facts.",
-    desc:"Every US public company files with the regulator: earnings, insider trades, and sudden material events. Janus reads these filings automatically and turns them into structured facts — the layer of corporate reality that sits underneath the price.",
+    desc:"Every US public company files with the regulator: earnings, insider trades, and sudden material events. Kestrel reads these filings automatically and turns them into structured facts — the layer of corporate reality that sits underneath the price.",
     rigor:"Drawn directly from the regulator's own official, public systems. The reader is built to know what it knows: anything it can't confidently interpret is flagged rather than guessed at, so the fact base stays clean.",
     grow:"The extraction machinery is the hard part, and it's built. Widening company coverage from here is a straightforward scaling exercise that deepens the corporate-reality layer under every equity."},
   {id:"kalshi", g:"input", col:0, label:"Live scoreboard", sub:"regulated event market", status:"working",
     plain:"A regulated, real-money market that grades our predictions in public.",
-    desc:"A US-regulated exchange for event contracts serves Janus two ways: as a venue where mispriced contracts can be traded profitably, and as an incorruptible grader — every prediction Janus logs there gets scored against what actually happened, with real money keeping everyone honest.",
+    desc:"A US-regulated exchange for event contracts serves Kestrel two ways: as a venue where mispriced contracts can be traded profitably, and as an incorruptible grader — every prediction Kestrel logs there gets scored against what actually happened, with real money keeping everyone honest.",
     rigor:"This is the sharpest validation instrument in the whole system: outcomes are settled by reality, not by our own evaluation code. Predictions are logged before the fact and scored after — there is no way to flatter the results.",
-    grow:"The scoring machinery is built and running. As Janus's strengths are mapped, the same machinery aims at whichever markets and horizons offer the best-priced opportunities."},
+    grow:"The scoring machinery is built and running. As Kestrel's strengths are mapped, the same machinery aims at whichever markets and horizons offer the best-priced opportunities."},
   {id:"macro", g:"input", col:0, label:"Macro backdrop", sub:"rates · inflation · calendar", status:"early",
     plain:"The big-picture economic weather.",
     desc:"Markets move with their backdrop — interest rates, inflation, the fiscal calendar. The ingestion pipeline (FRED, BLS, Treasury) is built; wiring a committed macro panel into the ledger is the remaining step.",
@@ -134,32 +134,32 @@ const NODES = [
 
   // ── the foundation ──────────────────────────────────────────────────────────────────
   {id:"ledger", g:"shared", col:1, label:"The time-true ledger", sub:"every input, aligned in time", status:"working",
-    plain:"One rigorously time-aligned foundation that every part of Janus reads from.",
+    plain:"One rigorously time-aligned foundation that every part of Kestrel reads from.",
     desc:"All the raw inputs — prices, disclosures, events — are fused into a single foundation where everything is lined up on a strict timeline. Every model, at every moment, sees exactly what was knowable at that moment and nothing more.",
     rigor:"The most common way quantitative research fools its authors is information leaking backward from the future. Here that is prevented by the architecture itself, not by policy — leakage is impossible by construction, and that property is continuously verified.",
     grow:"The foundation is built to absorb new inputs cheaply: each new data source added here lifts everything downstream at once."},
   {id:"newscal", g:"shared", col:1, label:"Event calendar", sub:"weighted by measured impact", status:"proven",
     plain:"A calendar of corporate events, weighted by how much each kind really moves markets.",
-    desc:"Not all news is equal, and Janus doesn't guess at which kinds matter — it measured them. Event types that demonstrably move prices carry real weight in the engine; event types that sound important but measurably don't were left out. The engine's sense of 'a big day' is earned from data.",
+    desc:"Not all news is equal, and Kestrel doesn't guess at which kinds matter — it measured them. Event types that demonstrably move prices carry real weight in the engine; event types that sound important but measurably don't were left out. The engine's sense of 'a big day' is earned from data.",
     rigor:"The measurements cleared a pre-declared statistical bar on real market history — the pass/fail line was set before the test ran, so the result could not be massaged afterward. This is the template every future signal has to survive.",
     grow:"The calendar currently covers the highest-impact event families; the same measure-first method extends to each new event type as coverage grows."},
 
   // ── Agora (the inward face) ─────────────────────────────────────────────────────────
   {id:"agora", g:"agora", col:2, label:"Agora", sub:"a living market in miniature", status:"working",
     plain:"A synthetic market where thousands of distinct participants trade against each other.",
-    desc:"Janus's inward face: a market grown from first principles, populated by thousands of participants with different goals, horizons, and appetites — patient institutions, restless speculators, liquidity providers, opportunists. Their interactions, not a formula, produce the prices.",
+    desc:"Kestrel's inward eye: a market grown from first principles, populated by thousands of participants with different goals, horizons, and appetites — patient institutions, restless speculators, liquidity providers, opportunists. Their interactions, not a formula, produce the prices.",
     rigor:"The hallmarks of real markets — rare violent moves, calm that turns to storm, crowding and retreat — emerge in Agora on their own, without ever being scripted. Behavior that appears unprompted, rather than being drawn in by hand, is the signature of honest machinery.",
     grow:"Agora is a rehearsal space that can stage ten thousand market histories where reality offers only one. Making its cast of participants ever more faithful to the real crowd is one of the richest veins of upside in the whole system."},
   {id:"tuning", g:"agora", col:2, label:"The rehearsal tuner", sub:"keeps Agora true to reality", status:"proven",
     plain:"Continuously tunes Agora until its markets behave like the real thing.",
-    desc:"A rehearsal is only valuable if it resembles opening night. This component automatically adjusts Agora until its synthetic markets are statistically faithful to real ones — so what Janus learns in rehearsal transfers to the real tape.",
+    desc:"A rehearsal is only valuable if it resembles opening night. This component automatically adjusts Agora until its synthetic markets are statistically faithful to real ones — so what Kestrel learns in rehearsal transfers to the real tape.",
     rigor:"The tuning process is judged on data it has never seen, under controls specifically designed to stop random luck from masquerading as improvement — a standard most published research doesn't meet.",
     grow:"As Agora's cast grows richer, the same honest tuning approach scales up with it — the method is built once and reused forever."},
 
   // ── Pythia (the outward face) ───────────────────────────────────────────────────────
   {id:"pythia", g:"pythia", col:2, label:"Pythia", sub:"reads the real tape", status:"working",
     plain:"Reads real market history and distills the current situation into its essentials.",
-    desc:"Janus's outward face: Pythia reads the foundation — prices, events, context — and condenses the present moment into its essential state. She is deliberately lean, running comfortably on commodity hardware, and reads equities and crypto with the same eyes.",
+    desc:"Kestrel's outward eye: Pythia reads the foundation — prices, events, context — and condenses the present moment into its essential state. She is deliberately lean, running comfortably on commodity hardware, and reads equities and crypto with the same eyes.",
     rigor:"Trained under the time-true discipline — only ever on the past, never peeking ahead — and given a measured head start by rehearsing in Agora before facing real markets, an advantage we verified rather than assumed.",
     grow:"Pythia is intentionally efficient today. More data, more markets, and heavier hardware raise her ceiling substantially — a scaling dial we hold in reserve."},
   {id:"cloud", g:"pythia", col:2, label:"The fair-value cloud", sub:"value + calibrated confidence", status:"working",
@@ -171,14 +171,14 @@ const NODES = [
   // ── distilled intelligence ──────────────────────────────────────────────────────────
   {id:"rules", g:"shared", col:3, label:"Readable rules", sub:"winning behavior, in plain English", status:"proven",
     plain:"What the winners do, written down as rules a human can read and challenge.",
-    desc:"After Agora runs, Janus studies which participants prospered and writes down what they actually did — as plain-language rules, not an inscrutable model. 'Buy what's cheap against fair value. Don't pile deeper into a position you're already committed to.' Nobody wrote those rules in. They were discovered.",
+    desc:"After Agora runs, Kestrel studies which participants prospered and writes down what they actually did — as plain-language rules, not an inscrutable model. 'Buy what's cheap against fair value. Don't pile deeper into a position you're already committed to.' Nobody wrote those rules in. They were discovered.",
     rigor:"The discovered rules independently reproduce classic risk discipline that took human traders generations to learn — emerging unprompted from the machinery. And because they're readable, they can be audited and challenged by anyone, which is a form of scrutiny black-box systems can never offer.",
     grow:"Today's rules are deliberately simple so their honesty is easy to verify. Richer rules that stay just as readable are a wide-open direction."},
-  {id:"fvr", g:"deliver", col:3, label:"Fair-value ranking", sub:"the flagship strategy", status:"early",
+  {id:"fvr", g:"deliver", col:3, label:"Fair-value ranking", sub:"the flagship · cleared its bar", status:"proven",
     plain:"Rank a whole basket by distance from fair value; lean toward the bargains.",
-    desc:"The strategy everything to the left exists to feed. Rather than betting on the direction of one asset, it sorts an entire basket from most underpriced to most overpriced and tilts toward the bargains — and it can learn how best to weigh Janus's own signals, so the strategy sharpens as the engine does.",
-    rigor:"It is validated under the most hostile conditions we can build: every trade charged full costs, strict past-versus-future separation, and head-to-head comparison against simple benchmarks that are genuinely hard to beat. We mark it early rather than proven because our bar for that word is high — a green light you can trust is worth more than a headline you can't.",
-    grow:"Broader baskets, a steadier fair-value cloud, and the learned signal-weighting are exactly the levers now being worked — this is where the engine's upside concentrates."},
+    desc:"The strategy everything to the left exists to feed. Rather than betting on the direction of one asset, it sorts an entire basket from most underpriced to most overpriced and tilts toward the bargains — and it can learn how best to weigh Kestrel's own signals, so the strategy sharpens as the engine does.",
+    rigor:"Validated in a pre-registered walk-forward on a decade of S&P 100 history: full costs on every trade, strict past-versus-future separation, and a head-to-head against an equal-weight basket that is genuinely hard to beat. Result — a mean out-of-sample Sharpe near three, positive ranking skill in every fold, and reproduction when re-fit from scratch. We reserve 'proven' for research validation, not a live track record, and we show exactly where it bends (it weakens in the 2022 bear).",
+    grow:"Live deployment is the next bar. The signal→book translation — trading only when a name moves enough to be worth the cost — is what let the edge survive; sharpening that, and a steadier cloud beneath it, is where the upside now concentrates."},
 
   // ── products ────────────────────────────────────────────────────────────────────────
   {id:"d_event", g:"deliver", col:4, label:"Event-market pricing", sub:"price bets better than the crowd", status:"working",
@@ -192,20 +192,25 @@ const NODES = [
     rigor:"Deliberately sequenced after validation — the product launches when the edge has cleared the bar, not before. Discipline about sequencing is itself part of the pitch.",
     grow:"All ahead of us, by design; it is the commercial reason the rest of the machine exists."},
   {id:"d_argus", g:"deliver", col:4, label:"Argus console", sub:"a hundred eyes, one operator", status:"planned",
-    plain:"The cockpit where a human supervises Janus day to day.",
+    plain:"The cockpit where a human supervises Kestrel day to day.",
     desc:"Named for the watchman with a hundred eyes: a daily console showing picks, proposed trades, and model health, with a human approving every action before it executes and alarms when anything drifts. A static HTML preview and deploy_record session playback exist; Mederos LLM explain-rank stubs are wired in the API.",
     rigor:"Designed to mirror real deployment — rolling updates, real costs, human oversight — rather than the idealized conditions backtests are usually shown in. The full design is written.",
     grow:"This is the bridge from validated strategy to running capital, and the natural surface for operating partner accounts."},
-  {id:"d_studio", g:"deliver", col:4, label:"Janus Studio", sub:"the consumer vision", status:"planned",
+  {id:"d_studio", g:"deliver", col:4, label:"Kestrel Studio", sub:"the consumer vision", status:"planned",
     plain:"An app where people generate, inspect, and share strategies that explain themselves.",
-    desc:"The consumer-facing horizon: a studio where users create strategies, look inside them — everything Janus produces is readable by design — and a marketplace grows around sharing them. Seeds today: the umarketsim-viz Electron playback viewer and the Android field prototype.",
+    desc:"The consumer-facing horizon: a studio where users create strategies, look inside them — everything Kestrel produces is readable by design — and a marketplace grows around sharing them. Seeds today: the umarketsim-viz Electron playback viewer and the Android field prototype.",
     rigor:"Rests on the explainability the entire stack is built around: you can show a customer why, not just hand them a number and ask for trust.",
-    grow:"Mostly vision today — and the run-viewer, mobile Distill tab, and plain-language rules are already real."},
+    grow:"Forge — the on-device strategy workbench — is its first real piece, live now. The run-viewer, mobile distiller, and plain-language rules round out the seeds; a shared marketplace of readable strategies is the horizon."},
   {id:"d_mobile", g:"deliver", col:4, label:"Android field app", sub:"live fit · distill on device", status:"working",
     plain:"A phone-native prototype: fit the model, play history, distill rules locally.",
     desc:"Kotlin Compose app with Live Fit, History, Sample, and Distill tabs. DistillEngine runs symbolic rule extraction on-device — the same readable-rule idea as the Python stack, streamed to the UI.",
-    rigor:"Not the final consumer app (that's Janus Studio), but a working end-to-end harness proving the engine can run outside the lab.",
-    grow:"On-device Janus ranker weights and Kraken live quotes are the next wires — scaffold is documented in the handoff plan."},
+    rigor:"Not the final consumer app (that's Kestrel Studio), but a working end-to-end harness proving the engine can run outside the lab.",
+    grow:"On-device Kestrel ranker weights and Kraken live quotes are the next wires — scaffold is documented in the handoff plan."},
+  {id:"forge", g:"deliver", col:4, label:"Forge", sub:"the strategy workbench · on device", status:"working",
+    plain:"Build and edit a trading rule as a graph you can actually read.",
+    desc:"A visual editor where a trading rule is a draggable node graph, not a wall of code. Build it by hand, or ask the on-device model to improve it and watch the change arrive as a before/after diff you accept, reject, or iterate on — the same propose-then-verify loop, applied to a strategy instead of a document. Custom indicators are first-class and reusable.",
+    rigor:"Every edit is re-scored on held-out data with honest costs included, and nothing a person or the model proposes bypasses the same promotion gate as any other candidate. The model proposes; the deterministic engine remains the sole judge.",
+    grow:"The first real piece of Kestrel Studio to ship. Richer node kinds and evolvable indicators are the near roadmap; a shared marketplace of readable strategies is the destination."},
 ];
 
 const LINKS = [
@@ -231,13 +236,14 @@ const LINKS = [
   ["fvr","d_argus","f"],
   ["cloud","d_studio","f"],["rules","d_studio","f"],
   ["cloud","d_mobile","f"],["rules","d_mobile","f"],
+  ["rules","forge","f","readable rules"],["fvr","forge","d","edit the flagship"],["forge","d_studio","d","first piece"],
   ["kalshi","d_event","f","real-money settlement"],
   ["cloud","kalshi","d","predictions logged live"],
 ];
 
 // ── layout ─────────────────────────────────────────────────────────────────────────────
 const COLX = [140, 400, 700, 1010, 1300];
-const COLHEAD = ["MARKET REALITY","THE FOUNDATION","THE TWO FACES","DISTILLED INTELLIGENCE","PRODUCTS"];
+const COLHEAD = ["MARKET REALITY","THE FOUNDATION","THE TWO EYES","DISTILLED INTELLIGENCE","PRODUCTS"];
 const NW=176, NH=46, VGAP=20;
 const byCol = {};
 NODES.forEach(n=>{(byCol[n.col]=byCol[n.col]||[]).push(n)});
@@ -347,7 +353,7 @@ function resetDetail(){
     `<span style="color:${v.color};font-weight:700">${c[k]} ${v.label.toLowerCase()}</span>`).join(' · ');
   document.getElementById('detail').innerHTML=
    `<h1>How the machine works</h1>`+
-   `<div class="plain">Real markets come in on the left, flow through the two faces of Janus, get distilled into fair value and readable rules, and become products on the right.</div>`+
+   `<div class="plain">Real markets come in on the left, flow through the two eyes of Kestrel, get distilled into fair value and readable rules, and become products on the right.</div>`+
    `<p>You don't need to be technical to read this. Follow the arrows left→right — that's the journey from raw market reality to something customers pay for. <b>Hover</b> any box to see, in plain language, what it is, why you can trust it, and how much better it can still get. <b>Click</b> to pin it here.</p>`+
    `<div class="sec"><span class="bar" style="background:#e3b341"></span>Reading the lights</div>`+
    `<p>Every box carries a maturity light:<br>${bar}.<br><br>The <span style="color:#3fb950;font-weight:700">green</span> pieces survived tests whose pass/fail bar was declared before the test ran — including live, real-money scoring on a regulated exchange. That discipline is why the amount still marked <span style="color:#8b949e;font-weight:700">planned</span> or <span style="color:#e3b341;font-weight:700">early</span> should read as unpriced upside: when this system calls something proven, the word has been made to mean something first.</p>`+
