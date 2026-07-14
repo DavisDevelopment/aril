@@ -25,6 +25,7 @@
 <nav>
   <a class="logo" href="#top"><img class="logo-mark" src="logo-512.png" alt="">Mederos <span>/ Kestrel</span></a>
   <ul>
+    <li><a href="#app">The app</a></li>
     <li><a href="#thesis">The thesis</a></li>
     <li><a href="#engine">The engine</a></li>
     <li><a href="#map">System map</a></li>
@@ -67,8 +68,85 @@
       </div>
     </div>
     <div class="hero-cta">
-      <a class="btn btn-primary" href="#map">Explore the system map ↓</a>
+      <a class="btn btn-primary" href="#app">See the app ↓</a>
+      <a class="btn btn-ghost" href="#map">Explore the system map</a>
       <a class="btn btn-ghost" href="#discipline">How we keep ourselves honest</a>
+    </div>
+  </div>
+</section>
+
+<section class="app-showcase" id="app">
+  <div class="wrap-wide">
+    <div class="section-label">The app</div>
+    <h2>Mederos — the engine, in your hand or on your desk</h2>
+    <div class="meander"></div>
+    <p class="lead">
+      Kestrel isn't a research repo you have to take on faith. It's a real app, running today —
+      portfolio and linked accounts, a live forward-backtest of your own strategy swarm, a
+      graph-based workbench for building and reading trading logic, and a full desktop workstation,
+      all backed by the same engine. Every screen below is an actual capture, not a mockup.
+    </p>
+
+    <div class="app-gallery">
+      <div class="app-gallery-row phones">
+        <figure class="app-shot-card phone">
+          <img src="img/shot-home.png" alt="Mederos Home — portfolio, linked accounts, and a live forward-backtest theater" loading="lazy">
+          <figcaption class="app-shot-cap">Home · portfolio + live forward-backtest</figcaption>
+        </figure>
+        <figure class="app-shot-card phone">
+          <img src="img/shot-swarm.png" alt="Swarm — a graph of distilled strategy nodes with a live scanner node feeding a real market universe" loading="lazy">
+          <figcaption class="app-shot-cap">Swarm · strategy graph, live scanner-fed universe</figcaption>
+        </figure>
+        <figure class="app-shot-card phone">
+          <img src="img/shot-explore.png" alt="Explore — a swipe-through fair-value ranking feed with gap, conviction, and feature attribution" loading="lazy">
+          <figcaption class="app-shot-cap">Explore · fair-value ranking feed</figcaption>
+        </figure>
+      </div>
+      <figure class="app-shot-card desktop">
+        <img src="img/shot-desktop.png" alt="Mederos desktop workstation — portfolio, live Kraken charting, and mesh device sync in one multi-pane shell" loading="lazy">
+        <figcaption class="app-shot-cap">Desktop workstation · same engine, multi-pane, live charting</figcaption>
+      </figure>
+    </div>
+
+    <div class="pillar-grid app-feature-grid">
+      <div class="pillar">
+        <div class="icon">HOME</div>
+        <h3>Portfolio, unified</h3>
+        <p>Linked Kraken and Robinhood accounts, holdings and sector mix in one view, and a live
+          forward-backtest card scoring your own swarm against the market as it runs.</p>
+      </div>
+      <div class="pillar">
+        <div class="icon">SWARM</div>
+        <h3>A graph you can read and rewire</h3>
+        <p>Each node is a distilled, human-readable rule — beam, tree, or derivation-pipeline logic —
+          with its own hyperparameters and refit cadence. <strong>New:</strong> scanner nodes feed a
+          node's symbol universe live off real market data instead of a hand-typed list.</p>
+      </div>
+      <div class="pillar">
+        <div class="icon">FORGE</div>
+        <h3>Strategy as a graph, on device</h3>
+        <p>Drag-build trading logic as boxes and wires, or ask the on-device model to improve a rule
+          and accept the change as a before/after diff. Every edit is re-scored on held-out data with
+          honest costs, instantly.</p>
+      </div>
+      <div class="pillar">
+        <div class="icon">EXPLORE</div>
+        <h3>Swipe through fair value</h3>
+        <p>A ranking feed built on your own swarm's output — gap from fair value, conviction, and a
+          per-signal attribution breakdown for every name, not just a black-box score.</p>
+      </div>
+      <div class="pillar">
+        <div class="icon">EXECUTION</div>
+        <h3>Your account follows the strategy</h3>
+        <p>Link a brokerage and it tracks the strategy's book automatically, inside a hard risk
+          envelope you set — total budget, per-name caps, and a kill switch you control.</p>
+      </div>
+      <div class="pillar">
+        <div class="icon">DESKTOP</div>
+        <h3>The same engine, full workstation</h3>
+        <p>A multi-pane desktop shell — live Kraken charting with a custom indicator suite, portfolio,
+          Forge, and device-mesh sync — running the identical engine as the phone, no server required.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -474,6 +552,33 @@
         <p class="product-feature-note">Actual on-device UI · the fundamentals-gated momentum rule.</p>
       </div>
     </div>
+
+    <div class="muse-block">
+      <div class="section-label">Under the hood · proprietary</div>
+      <h3>MuseScript — a scripting language built for speed, not just syntax</h3>
+      <p>
+        Every rule Forge draws as a graph is, underneath, a MuseScript program — a proprietary
+        scripting language we built for algorithmic trading logic, with impressive performance
+        baked into its architecture rather than bolted on after. The same source compiles to four
+        different execution targets — JavaScript, Python, numba-JIT, and native WebAssembly —
+        instead of being locked to one interpreter.
+      </p>
+      <div class="muse-stats">
+        <span class="bench-tag">Compiles to JS / Python / numba / WASM from one source</span>
+        <span class="bench-tag">Cross-runtime gate: identical result on all 4 hosts, max delta 0</span>
+        <span class="bench-tag">Compiled paths ~3–5ms vs. ~187s interpreted, same logic</span>
+        <span class="bench-tag">840 tests green across the JS and Python builds</span>
+      </div>
+      <p class="muse-vs">
+        <strong>Versus PineScript:</strong> Pine runs only inside TradingView's own sandboxed
+        interpreter — there's no ahead-of-time compile step and no alternate backend to reach for
+        when a script needs to move fast. We haven't run a published head-to-head, because Pine's
+        interpreter isn't something you can benchmark outside its own platform — but that's exactly
+        the architectural gap that matters: MuseScript strategies compile straight to native
+        execution paths instead of staying interpreted, which is where the numbers above come from.
+      </p>
+    </div>
+
     <div class="deliver-grid">
       <div class="deliver-card">
         <div class="status live">Working</div>

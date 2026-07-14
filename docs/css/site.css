@@ -253,6 +253,52 @@ h3 { font-size: 1.15rem; margin: 0 0 8px; }
   margin-bottom: 18px;
 }
 
+/* ── app showcase ── */
+.app-showcase {
+  padding: 90px 0 100px;
+  border-top: 1px solid var(--grid);
+}
+.app-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  margin-top: 40px;
+}
+.app-gallery-row.phones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px;
+  justify-content: center;
+}
+.app-shot-card {
+  margin: 0;
+  background: var(--panel);
+  border: 1px solid var(--grid);
+  border-radius: 16px;
+  padding: 12px;
+  box-shadow: 0 26px 64px rgba(0, 0, 0, 0.45);
+}
+.app-shot-card img {
+  width: 100%;
+  display: block;
+  border-radius: 10px;
+}
+.app-shot-card.phone { flex: 1 1 220px; max-width: 240px; }
+.app-shot-card.desktop { max-width: 100%; }
+.app-shot-cap {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+  text-align: center;
+  margin-top: 10px;
+  letter-spacing: 0.01em;
+}
+.app-feature-grid { margin-top: 56px; }
+.app-feature-grid .icon { color: var(--signal); }
+@media (max-width: 640px) {
+  .app-shot-card.phone { max-width: 78vw; }
+}
+
 /* ── pillars ── */
 .pillars {
   padding: 100px 0;
@@ -450,6 +496,20 @@ h3 { font-size: 1.15rem; margin: 0 0 8px; }
   .product-feature { grid-template-columns: 1fr; gap: 24px; justify-items: center; text-align: center; }
   .product-shot { max-width: 300px; }
 }
+
+/* ── muse-script callout ── */
+.muse-block {
+  background: linear-gradient(160deg, rgba(199, 139, 245, 0.08), var(--panel) 60%);
+  border: 1px solid var(--grid);
+  border-radius: 14px;
+  padding: 32px 30px;
+  margin: 36px 0 8px;
+}
+.muse-block h3 { font-size: 1.3rem; margin: 8px 0 12px; color: var(--text); }
+.muse-block > p { color: var(--muted); font-size: 0.95rem; line-height: 1.6; max-width: 760px; margin: 0 0 20px; }
+.muse-stats { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+.muse-vs { color: var(--muted); font-size: 0.9rem; line-height: 1.6; max-width: 760px; margin: 0; }
+.muse-vs strong { color: var(--signal); }
 
 /* ── evidence / benchmark ── */
 .evidence {
