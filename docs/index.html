@@ -19,6 +19,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/site.css">
+  <script src="js/demo.js" defer></script>
 </head>
 <body>
 
@@ -34,6 +35,7 @@
     <li><a href="#flywheel">Flywheel</a></li>
     <li><a href="#horizon">Horizon</a></li>
     <li><a href="#products">Products</a></li>
+    <li><a href="#demo">Try it</a></li>
   </ul>
   <a class="cta-nav" href="#contact">Get in touch</a>
 </nav>
@@ -577,6 +579,49 @@
         the architectural gap that matters: MuseScript strategies compile straight to native
         execution paths instead of staying interpreted, which is where the numbers above come from.
       </p>
+    </div>
+
+    <div class="demo" id="demo">
+      <div class="section-label">Try it · in your browser, right now</div>
+      <h3>Not a screenshot — pick a strategy, hit run</h3>
+      <p class="demo-intro">
+        This is the exact same engine the app ships, running client-side: parse, compile, and
+        backtest, entirely in this page. Nothing is sent to a server and nothing here is
+        pre-baked — the chart, the trades, and the numbers below are computed live, right now, by
+        your browser.
+      </p>
+
+      <div class="demo-toolbar">
+        <label class="demo-select-wrap">
+          <span>Example</span>
+          <select id="demo-select"></select>
+        </label>
+        <div class="demo-tiers">
+          <span class="demo-tiers-lbl">Compile target</span>
+          <button class="demo-tier-btn active" data-tier="js" type="button">JS <em>~1M bars/sec</em></button>
+          <button class="demo-tier-btn" data-tier="interp" type="button">Interpreted <em>steppable</em></button>
+        </div>
+        <button class="btn btn-primary demo-run-btn" id="demo-run" type="button">Run ▶</button>
+      </div>
+
+      <p class="demo-blurb" id="demo-blurb"></p>
+      <div class="demo-tags" id="demo-tags"></div>
+
+      <div class="demo-grid">
+        <pre class="demo-code-pane"><code id="demo-code"></code></pre>
+        <div class="demo-chart-pane">
+          <canvas id="demo-canvas"></canvas>
+          <div class="demo-legend" id="demo-legend"></div>
+        </div>
+      </div>
+
+      <div class="demo-footer">
+        <div class="demo-metrics" id="demo-metrics"></div>
+        <div class="demo-status-wrap">
+          <span class="demo-status" id="demo-status">ready</span>
+          <span class="demo-parity" id="demo-parity"></span>
+        </div>
+      </div>
     </div>
 
     <div class="deliver-grid">
