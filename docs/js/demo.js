@@ -100,6 +100,25 @@
       ].join("\n")
     },
     {
+      id: "momentum-short",
+      label: "Momentum — long and short",
+      tags: ["short-selling", "both sides", "crossover"],
+      blurb: "The same crossover, both directions: go long when fast leads, flip short when it lags. Shorting is a first-class action, not an afterthought.",
+      tape: trendTape,
+      source: [
+        "strategy MomentumBothSides {",
+        "  onBar {",
+        "    fast = sma(close, 10)",
+        "    slow = sma(close, 30)",
+        "    plot(fast, \"fast\")",
+        "    plot(slow, \"slow\")",
+        "    when crossover(fast, slow): { long() }",
+        "    when crossunder(fast, slow): { short() }",
+        "  }",
+        "}"
+      ].join("\n")
+    },
+    {
       id: "rsi",
       label: "RSI Reversion",
       tags: ["indicators", "mean-reversion"],
@@ -112,6 +131,55 @@
         "    plot(r, \"rsi\")",
         "    when r < 30.0: { long() }",
         "    when r > 70.0: { flat() }",
+        "  }",
+        "}"
+      ].join("\n")
+    },
+    {
+      id: "filtered",
+      label: "Filtered Entry — AND logic",
+      tags: ["boolean logic", "multi-indicator", "ensemble in one rule"],
+      blurb: "Two indicators, one rule: only take the crossover entry when RSI agrees it isn't already stretched. Compound boolean conditions are just part of the language.",
+      tape: meanRevertTape,
+      source: [
+        "strategy FilteredEntry {",
+        "  onBar {",
+        "    r = rsi(close, 14)",
+        "    fast = sma(close, 6)",
+        "    slow = sma(close, 18)",
+        "    plot(r, \"rsi\")",
+        "    when crossover(fast, slow) && r < 65.0: { long() }",
+        "    when r > 72.0: { flat() }",
+        "  }",
+        "}"
+      ].join("\n")
+    },
+    {
+      id: "regime",
+      label: "Regime Switch — enum + match",
+      tags: ["enum", "pattern match", "free function"],
+      blurb: "A tiny classifier labels the tape Trending or Ranging as a real enum, and match() turns that label into an action. The same shape a forkable regime filter uses under the hood.",
+      tape: trendTape,
+      source: [
+        "enum Regime {",
+        "  Trending;",
+        "  Ranging;",
+        "}",
+        "",
+        "function classify(fast, slow) {",
+        "  when fast > slow * 1.01: { return Trending }",
+        "  return Ranging",
+        "}",
+        "",
+        "strategy RegimeSwitch {",
+        "  onBar {",
+        "    fast = sma(close, 9)",
+        "    slow = sma(close, 30)",
+        "    reg = classify(fast, slow)",
+        "    go = match(reg) [ Trending => 1.0, Ranging => 0.0 ]",
+        "    plot(go, \"regime\")",
+        "    when go > 0.5: { long() }",
+        "    when go < 0.5: { flat() }",
         "  }",
         "}"
       ].join("\n")
@@ -179,17 +247,40 @@
       ].join("\n")
     },
     {
+      id: "breakout",
+      label: "Breakout Tracker — class state",
+      tags: ["class", "stateful", "running high"],
+      blurb: "A class remembers the highest price it has ever seen and enters on a fresh high, exiting on a pullback. Persistent state as a real object, updated inside a method.",
+      tape: trendTape,
+      source: [
+        "class Peak {",
+        "  hi = 0.0;",
+        "  function push(x) {",
+        "    when x > hi: { hi = x }",
+        "    return hi",
+        "  }",
+        "}",
+        "",
+        "strategy BreakoutTracker {",
+        "  peak = new Peak();",
+        "  onBar {",
+        "    top = peak.push(close)",
+        "    plot(top, \"peak\")",
+        "    when close >= top: { long() }",
+        "    when close < top * 0.97: { flat() }",
+        "  }",
+        "}"
+      ].join("\n")
+    },
+    {
       id: "probcloud",
       label: "Probability Cloud — Kestrel",
       tags: ["Kestrel bridge", "calibrated confidence", "flagship"],
       blurb: "Fair value with a shape, not a point: a fitted probability cloud from Kestrel's forecasting engine, queried right inside the strategy — position sizing driven by calibrated confidence instead of a single number.",
       tape: trendTape,
-      // `source` is what actually runs; `displaySource` swaps the giant
-      // escaped-JSON literal for a short placeholder so the code pane reads
-      // like a strategy, not a wall of quantile data. In the real app this
-      // JSON comes from `tools/kestrel_bridge.py` fitting the encoder on a
-      // real tape, not a hand-typed literal — the placeholder says as much.
-      displaySourceMarker: "/* fitted cloud JSON, from tools/kestrel_bridge.py — omitted here for readability */",
+      // In the real app this JSON comes from the Kestrel bridge fitting the
+      // encoder on a real tape; here it's an inline literal so the whole thing
+      // stays editable and runs exactly as shown.
       source: [
         "strategy ProbCloudRebalance {",
         "  cloud = probcloud_from_json(" + cloudLiteral + ")",
@@ -433,6 +524,7 @@
     var runBtn = document.getElementById("demo-run");
     var tierBtns = root.querySelectorAll(".demo-tier-btn");
     var codeEl = document.getElementById("demo-code");
+    var inputEl = document.getElementById("demo-input");
     var blurbEl = document.getElementById("demo-blurb");
     var tagsEl = document.getElementById("demo-tags");
     var legendEl = document.getElementById("demo-legend");
@@ -450,18 +542,35 @@
       select.appendChild(opt);
     });
 
+    // The editor is WYSIWYG: what's shown, highlighted, and run is exactly the
+    // textarea's value. Selecting an example loads its source into the textarea;
+    // typing re-highlights live; Run executes whatever is currently there.
+    function syncHighlight() {
+      codeEl.innerHTML = highlight(inputEl.value);
+    }
+
     function selectExample(id) {
       current = EXAMPLES.filter(function (e) { return e.id === id; })[0] || EXAMPLES[0];
       select.value = current.id;
-      var displaySrc = current.displaySourceMarker
-        ? current.source.replace(cloudLiteral, current.displaySourceMarker)
-        : current.source;
-      codeEl.innerHTML = highlight(displaySrc);
+      inputEl.value = current.source;
+      syncHighlight();
       blurbEl.textContent = current.blurb;
       tagsEl.innerHTML = current.tags.map(function (t) {
         return '<span class="bench-tag">' + t + "</span>";
       }).join("");
     }
+
+    inputEl.addEventListener("input", syncHighlight);
+    // Tab inserts two spaces instead of leaving the field — code editors don't
+    // trap-then-release, and MuseScript indentation matters to readability.
+    inputEl.addEventListener("keydown", function (e) {
+      if (e.key !== "Tab") return;
+      e.preventDefault();
+      var s = inputEl.selectionStart, end = inputEl.selectionEnd, v = inputEl.value;
+      inputEl.value = v.slice(0, s) + "  " + v.slice(end);
+      inputEl.selectionStart = inputEl.selectionEnd = s + 2;
+      syncHighlight();
+    });
 
     function setTier(t) {
       tier = t;
@@ -480,9 +589,10 @@
       statusEl.className = "demo-status";
       runBtn.disabled = true;
       loadEngine().then(function (MuseRuntime) {
+        var src = inputEl.value;
         var bars = current.tape(N_BARS, SEED);
         var t0 = performance.now();
-        var res = MuseRuntime.run(current.source, bars, { tier: tier });
+        var res = MuseRuntime.run(src, bars, { tier: tier });
         var t1 = performance.now();
 
         if (!res.ok) {
@@ -518,7 +628,7 @@
         // guarantee the test suite enforces (max delta 0 across hosts),
         // shown live instead of just claimed.
         var otherTier = tier === "js" ? "interp" : "js";
-        var otherRes = MuseRuntime.run(current.source, bars, { tier: otherTier });
+        var otherRes = MuseRuntime.run(src, bars, { tier: otherTier });
         if (otherRes.ok && otherRes.trades === res.trades &&
             Math.abs(otherRes.finalEquity - res.finalEquity) < 0.01) {
           parityEl.textContent = "✓ identical result on interp & js — same source, same answer";

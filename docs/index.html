@@ -3,16 +3,16 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Mederos — The Kestrel Engine</title>
-  <meta name="description" content="Kestrel is Mederos's market engine: it learns the machinery behind price and turns it into fair-value estimates, calibrated confidence, and readable strategies you can build — now validated in a pre-registered walk-forward under full trading costs.">
+  <title>Mederos — Algorithmic trading, gamified</title>
+  <meta name="description" content="Mederos is a cross-platform trading platform where you evolve, author, ensemble, and run sophisticated strategies across stocks, crypto and forex — through your own linked brokerages. Built on MuseScript, a hand-rolled trading language, with on-device AI, autonomous research, and a simulation engine that keeps strategies economically honest.">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Mederos — The Kestrel Engine">
-  <meta property="og:description" content="A market engine that learns the machinery behind price — fair value, calibrated confidence, and readable strategies you can build. Flagship validated in a walk-forward under full costs.">
+  <meta property="og:title" content="Mederos — Algorithmic trading, gamified">
+  <meta property="og:description" content="A cross-platform trading platform: evolve or author strategies in your own trading language, ensemble them, and run them live across stocks, crypto and forex — with on-device AI and autonomous research built in.">
   <meta property="og:image" content="https://davisdevelopment.github.io/aril/img/system-map.png">
   <meta property="og:url" content="https://davisdevelopment.github.io/aril/">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Mederos — The Kestrel Engine">
-  <meta name="twitter:description" content="A market engine that learns the machinery behind price. Flagship validated in a walk-forward under full costs.">
+  <meta name="twitter:title" content="Mederos — Algorithmic trading, gamified">
+  <meta name="twitter:description" content="Evolve or author strategies in your own trading language, ensemble them, and run them live across stocks, crypto and forex — with on-device AI and autonomous research built in.">
   <meta name="twitter:image" content="https://davisdevelopment.github.io/aril/img/system-map.png">
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="apple-touch-icon" href="logo-512.png">
@@ -24,17 +24,16 @@
 <body>
 
 <nav>
-  <a class="logo" href="#top"><img class="logo-mark" src="logo-512.png" alt="">Mederos <span>/ Kestrel</span></a>
+  <a class="logo" href="#top"><img class="logo-mark" src="logo-512.png" alt="">Mederos</a>
   <ul>
     <li><a href="#app">The app</a></li>
-    <li><a href="#thesis">The thesis</a></li>
-    <li><a href="#engine">The engine</a></li>
-    <li><a href="#map">System map</a></li>
-    <li><a href="#discipline">Discipline</a></li>
+    <li><a href="#language">The language</a></li>
+    <li><a href="#build">Build</a></li>
+    <li><a href="#terminal">Terminal</a></li>
+    <li><a href="#intelligence">Intelligence</a></li>
+    <li><a href="#kestrel">Kestrel</a></li>
     <li><a href="#evidence">Evidence</a></li>
-    <li><a href="#flywheel">Flywheel</a></li>
-    <li><a href="#horizon">Horizon</a></li>
-    <li><a href="#products">Products</a></li>
+    <li><a href="#economy">The game</a></li>
     <li><a href="#demo">Try it</a></li>
   </ul>
   <a class="cta-nav" href="#contact">Get in touch</a>
@@ -42,37 +41,38 @@
 
 <section class="hero" id="top">
   <div class="wrap">
-    <img class="hero-mark" src="logo-512.png" alt="The Kestrel Engine">
+    <img class="hero-mark" src="logo-512.png" alt="Mederos">
     <div class="badge-pre">Pre-launch · 2026</div>
-    <h1>Markets have <span class="accent">internals</span>.<br>Kestrel learns them.</h1>
+    <h1>Serious algorithmic trading,<br><span class="accent">gamified</span>.</h1>
     <p class="tagline">
-      Kestrel is Mederos's market engine. It doesn't chase the chart — it learns the machinery
-      that produces the chart, then turns what it learns into fair-value estimates, calibrated
-      confidence, and readable strategies a person can build and challenge. Its flagship has now
-      cleared a pre-registered walk-forward under full trading costs.
+      Mederos is a cross-platform trading platform where you <strong>evolve</strong> strategies,
+      <strong>write</strong> them, ensemble them, and run them live — across stocks, crypto and forex,
+      through your own linked brokerages. Every strategy is readable, editable, and exportable. It all
+      runs on MuseScript, a trading language we built from scratch, with on-device AI and autonomous
+      research baked in. And it's engineered so the strategies you ship actually hold up.
     </p>
     <div class="hero-stats">
       <div class="stat">
-        <span class="num">~1,000</span>
-        <span class="lbl">US equities · a decade+ of history</span>
+        <span class="num">One</span>
+        <span class="lbl">Account · phone, desktop &amp; web, meshed as one</span>
       </div>
       <div class="stat">
-        <span class="num">10+</span>
-        <span class="lbl">Crypto markets · intraday grain</span>
+        <span class="num">3 asset classes</span>
+        <span class="lbl">Stocks · crypto · forex · multi-brokerage</span>
       </div>
       <div class="stat">
-        <span class="num">Live</span>
-        <span class="lbl">Linked accounts follow the strategy — risk-gated</span>
+        <span class="num">Evolve <em>or</em> author</span>
+        <span class="lbl">Both paths, one readable strategy format</span>
       </div>
       <div class="stat">
-        <span class="num">1 CPU</span>
-        <span class="lbl">The whole engine, commodity hardware</span>
+        <span class="num">Your AI</span>
+        <span class="lbl">Run your own local models, in the loop</span>
       </div>
     </div>
     <div class="hero-cta">
       <a class="btn btn-primary" href="#app">See the app ↓</a>
-      <a class="btn btn-ghost" href="#map">Explore the system map</a>
-      <a class="btn btn-ghost" href="#discipline">How we keep ourselves honest</a>
+      <a class="btn btn-ghost" href="#demo">Run a live strategy</a>
+      <a class="btn btn-ghost" href="#evidence">See the evidence</a>
     </div>
   </div>
 </section>
@@ -80,13 +80,14 @@
 <section class="app-showcase" id="app">
   <div class="wrap-wide">
     <div class="section-label">The app</div>
-    <h2>Mederos — the engine, in your hand or on your desk</h2>
+    <h2>One platform, every screen you own</h2>
     <div class="meander"></div>
     <p class="lead">
-      Kestrel isn't a research repo you have to take on faith. It's a real app, running today —
-      portfolio and linked accounts, a live forward-backtest of your own strategy swarm, a
-      graph-based workbench for building and reading trading logic, and a full desktop workstation,
-      all backed by the same engine. Every screen below is an actual capture, not a mockup.
+      Mederos isn't a research repo you have to take on faith. It's a real, running app ecosystem —
+      a phone-native trader, a full desktop workstation, and a web surface, all signed into one account
+      and meshed together so the strategy you evolve on the couch is live on your desk before you sit
+      down. Same engine everywhere. No server required. Every screen below is an actual capture, not a
+      mockup.
     </p>
 
     <div class="app-gallery">
@@ -96,180 +97,325 @@
           <figcaption class="app-shot-cap">Home · portfolio + live forward-backtest</figcaption>
         </figure>
         <figure class="app-shot-card phone">
-          <img src="img/shot-swarm.png" alt="Swarm — a graph of distilled strategy nodes with a live scanner node feeding a real market universe" loading="lazy">
-          <figcaption class="app-shot-cap">Swarm · strategy graph, live scanner-fed universe</figcaption>
+          <img src="img/shot-swarm.png" alt="Swarm — a graph of strategy nodes with a live scanner node feeding a real market universe" loading="lazy">
+          <figcaption class="app-shot-cap">Swarm · your strategies, wired into an ensemble</figcaption>
         </figure>
         <figure class="app-shot-card phone">
           <img src="img/shot-explore.png" alt="Explore — a swipe-through fair-value ranking feed with gap, conviction, and feature attribution" loading="lazy">
-          <figcaption class="app-shot-cap">Explore · fair-value ranking feed</figcaption>
+          <figcaption class="app-shot-cap">Explore · swipe a ranked market feed</figcaption>
         </figure>
       </div>
       <figure class="app-shot-card desktop">
-        <img src="img/shot-desktop.png" alt="Mederos desktop workstation — portfolio, live Kraken charting, and mesh device sync in one multi-pane shell" loading="lazy">
-        <figcaption class="app-shot-cap">Desktop workstation · same engine, multi-pane, live charting</figcaption>
+        <img src="img/shot-desktop.png" alt="Mederos desktop workstation — portfolio, live charting, and mesh device sync in one multi-pane shell" loading="lazy">
+        <figcaption class="app-shot-cap">Desktop workstation · full terminal, live charting, same engine</figcaption>
       </figure>
     </div>
 
     <div class="pillar-grid app-feature-grid">
       <div class="pillar">
-        <div class="icon">HOME</div>
-        <h3>Portfolio, unified</h3>
-        <p>Linked Kraken and Robinhood accounts, holdings and sector mix in one view, and a live
-          forward-backtest card scoring your own swarm against the market as it runs.</p>
+        <div class="icon">MESH</div>
+        <h3>Every device, one brain</h3>
+        <p>Phone, desktop and web share one account and one strategy set over an encrypted device mesh.
+          Kick off a fit on your laptop, approve it from your phone, watch it run on the big screen —
+          no cloud round-trip in the middle.</p>
       </div>
       <div class="pillar">
         <div class="icon">SWARM</div>
         <h3>A graph you can read and rewire</h3>
-        <p>Each node is a distilled, human-readable rule — beam, tree, or derivation-pipeline logic —
-          with its own hyperparameters and refit cadence. <strong>New:</strong> scanner nodes feed a
-          node's symbol universe live off real market data instead of a hand-typed list.</p>
-      </div>
-      <div class="pillar">
-        <div class="icon">FORGE</div>
-        <h3>Strategy as a graph, on device</h3>
-        <p>Drag-build trading logic as boxes and wires, or ask the on-device model to improve a rule
-          and accept the change as a before/after diff. Every edit is re-scored on held-out data with
-          honest costs, instantly.</p>
+        <p>Drop your strategies onto a canvas and wire them into a live ensemble. Each node is a
+          human-readable rule with its own parameters and refit cadence; scanner nodes feed a node's
+          symbol universe straight off real market data instead of a hand-typed list.</p>
       </div>
       <div class="pillar">
         <div class="icon">EXPLORE</div>
-        <h3>Swipe through fair value</h3>
-        <p>A ranking feed built on your own swarm's output — gap from fair value, conviction, and a
-          per-signal attribution breakdown for every name, not just a black-box score.</p>
+        <h3>Swipe through the market</h3>
+        <p>A ranking feed built on your own swarm's output — the gap from fair value, the conviction,
+          and a per-signal attribution for every name. Not a black-box score: you can see exactly why
+          each one surfaced.</p>
       </div>
       <div class="pillar">
         <div class="icon">EXECUTION</div>
-        <h3>Your account follows the strategy</h3>
-        <p>Link a brokerage and it tracks the strategy's book automatically, inside a hard risk
-          envelope you set — total budget, per-name caps, and a kill switch you control.</p>
+        <h3>Your accounts follow along</h3>
+        <p>Link a brokerage and it tracks your strategy's book automatically, inside a hard risk
+          envelope you set — total budget, per-name caps, and a kill switch you hold. Stocks, crypto
+          and forex, live today.</p>
       </div>
       <div class="pillar">
         <div class="icon">DESKTOP</div>
-        <h3>The same engine, full workstation</h3>
-        <p>A multi-pane desktop shell — live Kraken charting with a custom indicator suite, portfolio,
-          Forge, and device-mesh sync — running the identical engine as the phone, no server required.</p>
+        <h3>A full trading workstation</h3>
+        <p>A multi-pane desktop shell — live charting with a custom indicator suite, portfolio, the
+          strategy workbench, notebooks, and mesh sync — running the identical engine as the phone.</p>
+      </div>
+      <div class="pillar">
+        <div class="icon">GAME</div>
+        <h3>It plays like a game</h3>
+        <p>Quant work that usually lives in a terminal becomes something you actually want to open:
+          progress, currencies, a strategy collection to grow, and a leaderboard of the ideas that
+          survive. Depth without the drudgery.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="pillars" id="thesis">
+<section class="deliverables" id="language">
   <div class="wrap">
-    <div class="section-label">The thesis</div>
-    <h2>Price is a shadow, not a series</h2>
+    <div class="section-label">The language</div>
+    <h2>It all runs on MuseScript</h2>
     <div class="meander"></div>
     <p class="lead">
-      Most quantitative models study the shadow — the price series itself — and inherit all
-      the noise and opacity that comes with it. Kestrel studies the thing casting the shadow:
-      the crowd of participants whose decisions become the price. Understand the crowd,
-      and the chart stops being a mystery and starts being an output.
+      Under every strategy in Mederos — evolved or hand-written — is a MuseScript program. It's a
+      trading language we built from scratch: real functions, types, classes, enums and pattern
+      matching, plus first-class market primitives, tuned for algorithmic trading logic and for
+      speed. This is the substrate the whole platform stands on.
     </p>
-    <div class="flow-strip">
-      <span class="flow-node">Real markets</span>
-      <span class="flow-arr">→</span>
-      <span class="flow-node highlight">The Kestrel Engine</span>
-      <span class="flow-arr">→</span>
-      <span class="flow-node">Fair value + confidence</span>
-      <span class="flow-arr">→</span>
-      <span class="flow-node">Readable rules</span>
-      <span class="flow-arr">→</span>
-      <span class="flow-node">Products</span>
+
+    <div class="muse-block">
+      <div class="section-label">Under the hood · proprietary</div>
+      <h3>One source, four execution targets</h3>
+      <p>
+        The same MuseScript source compiles to JavaScript, Python, numba-JIT, and native WebAssembly —
+        so a strategy runs steppable in a notebook, blazing on the desktop, and native on the phone
+        without you rewriting a line. Performance is baked into the architecture, not bolted on after.
+      </p>
+      <div class="muse-stats">
+        <span class="bench-tag">Compiles to JS / Python / numba / WASM from one source</span>
+        <span class="bench-tag">Cross-runtime gate: identical result on all 4 hosts, max delta 0</span>
+        <span class="bench-tag">Compiled paths in milliseconds vs. seconds interpreted, same logic</span>
+        <span class="bench-tag">840+ tests green across the JS and Python builds</span>
+      </div>
+      <p class="muse-vs">
+        <strong>Versus PineScript:</strong> Pine runs only inside TradingView's own sandboxed
+        interpreter — no ahead-of-time compile step, no alternate backend to reach for when a script
+        needs to move fast, no exporting your logic off-platform. MuseScript strategies compile
+        straight to native execution paths and are <em>yours</em> — readable, portable, and
+        editable outside any one app.
+      </p>
     </div>
+  </div>
+</section>
+
+<section class="pillars" id="build" style="padding-top:0">
+  <div class="wrap">
+    <div class="section-label">Building strategies</div>
+    <h2>Evolve it, or write it. Then mix everything.</h2>
+    <div class="meander"></div>
+    <p class="lead">
+      Most tools make you pick a camp: black-box machine learning, or hand-coded rules. Mederos gives
+      you both, in the same readable format — so an evolved strategy and one you wrote by hand are the
+      same kind of object, and you can freely mix, match, ensemble, and edit them.
+    </p>
     <div class="pillar-grid">
       <div class="pillar">
-        <div class="icon">01 · TWO EYES</div>
-        <h3>One engine, looking both ways</h3>
+        <div class="icon">→ EVOLVE</div>
+        <h3>Let the search do the work</h3>
         <p>
-          A kestrel hunts on sight — hovering dead-still above a field, seeing what nothing else
-          can, then striking. Our engine looks two ways at once. <strong>Agora</strong> looks
-          inward, at a living market in miniature it grows from first principles and tunes until it
-          behaves like the real thing. <strong>Pythia</strong> looks outward, reading real markets
-          and answering with fair value and honest confidence. Each line of sight sharpens the other.
+          Point the evolutionary engine at a market and it breeds, mutates and selects strategies
+          against held-out data with honest costs — surfacing structure you'd never think to type.
+          What comes out isn't a weight blob: it's a readable MuseScript program you can open,
+          understand, and change.
         </p>
       </div>
       <div class="pillar">
-        <div class="icon">02 · READABLE</div>
-        <h3>Answers you can argue with</h3>
+        <div class="icon">→ AUTHOR</div>
+        <h3>Write it like an engineer</h3>
         <p>
-          Kestrel doesn't hand you a number and demand faith. Its conclusions come out as
-          rules in plain language — the kind a portfolio manager can read, question, and veto.
-          Classic risk discipline shows up in those rules on its own, without anyone writing it in.
-          And when we distill a simulated trader whose logic we planted ourselves, the engine
-          recovers it at <strong>0.97 fidelity</strong> — against 0.51 for a method blind to the
-          market's structure. Readability you can measure.
+          Prefer to build it yourself? Write MuseScript directly, or draw it in <strong>Forge</strong>
+          as a node graph — features and constants flowing into comparisons, logic, and a single trade
+          signal. Every edit is re-scored on held-out data with honest costs, instantly.
         </p>
       </div>
       <div class="pillar">
-        <div class="icon">03 · DISCIPLINED</div>
-        <h3>The bar is set before the test</h3>
+        <div class="icon">→ MIX &amp; ENSEMBLE</div>
+        <h3>Everything composes</h3>
         <p>
-          Every claim Kestrel makes has to survive machinery built to kill it: live scoring
-          against real outcomes, full trading costs, strict past-versus-future separation,
-          and comparison against simple baselines. Ideas that don't clear the bar are retired
-          in the open — which is exactly why the ones that survive mean something.
+          Because evolved and authored strategies share one format, you can ensemble them on the Swarm
+          canvas, fork and remix a rule, splice a hand-written filter onto an evolved core, and export
+          the whole thing to run anywhere. Nothing is locked in a black box.
+        </p>
+      </div>
+    </div>
+
+    <div class="product-feature">
+      <img class="product-shot" src="img/forge.png"
+        alt="Forge — a trading rule drawn as a node graph on a phone, with a live held-out score" loading="lazy">
+      <div class="product-feature-copy">
+        <div class="section-label">Forge · on device</div>
+        <h3>A strategy you can read, in your hand</h3>
+        <p>
+          A trading rule becomes a graph: features and constants flow into comparisons, comparisons
+          into AND/OR logic, and everything into a single trade signal. Drag to build it by hand, or
+          ask an AI model to improve it and accept the change as a before/after diff. Every edit is
+          re-scored on held-out data with honest costs — the same engine as the desktop stack,
+          running on the phone.
+        </p>
+        <p class="product-feature-note">Actual on-device UI · a fundamentals-gated momentum rule.</p>
+      </div>
+    </div>
+
+    <div class="muse-block">
+      <div class="section-label">Prototype fast</div>
+      <h3>MuseScript notebooks — cells, not ceremony</h3>
+      <p>
+        Inside the app is a full notebook environment: Jupyter-style cells that execute cumulatively,
+        keyboard shortcuts, inline charts and results. Sketch an indicator, test a signal, backtest a
+        fragment, and promote what works into a real strategy — all without leaving Mederos. It's the
+        fastest way from "what if" to a running rule.
+      </p>
+      <div class="muse-stats">
+        <span class="bench-tag">Cumulative cell execution</span>
+        <span class="bench-tag">Inline charts &amp; metrics</span>
+        <span class="bench-tag">Promote a cell straight into a strategy</span>
+        <span class="bench-tag">Same runtime as live execution — no surprises</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="app-showcase" id="terminal">
+  <div class="wrap-wide">
+    <div class="section-label">The terminal</div>
+    <h2>A real trading terminal, not a toy</h2>
+    <div class="meander"></div>
+    <p class="lead">
+      Under the game layer is a serious, full-featured trading terminal. Live charting with a custom,
+      forkable indicator suite. Multiple brokerages linked at once. Stocks, crypto and forex in one
+      book. And execution that follows your strategy automatically inside a risk envelope you control.
+    </p>
+    <div class="pillar-grid">
+      <div class="pillar">
+        <div class="icon">CHARTING</div>
+        <h3>WebGL charting, indicators you can fork</h3>
+        <p>
+          A hand-built GPU charting engine renders deep history smoothly, with an indicator library
+          where every indicator is itself a MuseScript program — viewable, forkable, and editable
+          in-app. See the math, then change it.
+        </p>
+      </div>
+      <div class="pillar">
+        <div class="icon">BROKERAGES</div>
+        <h3>Bring your own accounts</h3>
+        <p>
+          Link multiple brokerages side by side and trade across all of them from one book — equities,
+          crypto and forex together. Mederos places the trades to match your strategy; you keep custody
+          and control.
+        </p>
+      </div>
+      <div class="pillar">
+        <div class="icon">RISK</div>
+        <h3>A hard envelope, always</h3>
+        <p>
+          Every automated action lives inside limits you set — total budget, per-name caps, and a kill
+          switch you hold. Nothing sizes itself past the boundary you drew. The bridge from a validated
+          strategy to real positions is built and running today.
         </p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="pillars" id="engine" style="padding-top:0">
+<section class="pillars" id="intelligence">
   <div class="wrap">
-    <div class="section-label">The engine</div>
-    <h2>Agora and Pythia — how Kestrel sees both ways</h2>
+    <div class="section-label">Intelligence</div>
+    <h2>Your AI, on your machine, in the loop</h2>
     <div class="meander"></div>
     <p class="lead">
-      A market is a conversation between thousands of participants with different goals,
-      horizons, and appetites. Kestrel models the conversation, not just its transcript.
+      Mederos treats large language models as first-class collaborators in strategy work — and it lets
+      you run them yourself. Point it at a local model on your own hardware and that model becomes part
+      of the authoring loop: nothing about your ideas has to leave your machine.
     </p>
     <div class="pillar-grid">
       <div class="pillar">
-        <h3>Agora — the inward eye</h3>
+        <div class="icon">→ BRING YOUR OWN MODEL</div>
+        <h3>Local LLMs, privately</h3>
         <p>
-          A synthetic market, populated by thousands of distinct participants — patient
-          institutions, restless speculators, liquidity providers, opportunists — trading
-          against each other in a world Kestrel controls completely. The hallmarks of real
-          markets emerge on their own: rare violent moves, calm that turns to storm,
-          crowding and retreat. Nobody scripts them. They emerge — which is how we know
-          the machinery underneath is honest.
+          Run open models on your own machine and wire them straight into the app. They help you draft
+          MuseScript, explain a rule, propose an improvement as a diff, and reason over a strategy's
+          behavior — all locally, so your edge stays with you.
         </p>
       </div>
       <div class="pillar">
-        <h3>Pythia — the outward eye</h3>
+        <div class="icon">→ AUTOPILOT</div>
+        <h3>Autonomous research &amp; iteration</h3>
         <p>
-          Pythia reads the real tape and answers the only question that matters:
-          <em>what is this actually worth, and how sure are we?</em> Her answer is never
-          a single number — it's a fair-value estimate wrapped in a confidence range that
-          has been checked against reality. When Pythia says 90%, we've verified it
-          means about 90%.
+          Set an objective and let Mederos run a research → hypothesize → build → validate → refine
+          loop on its own — inspired by open autonomous-research systems, but wired to the real engine
+          and the honest-cost gate. It proposes; you review and commit. It iterates while you sleep.
         </p>
       </div>
       <div class="pillar">
-        <h3>The dialogue between them</h3>
+        <div class="icon">→ ATTRIBUTION</div>
+        <h3>Always explainable</h3>
         <p>
-          Agora is tuned until its synthetic markets are statistically indistinguishable
-          from real ones — a rehearsal space where Kestrel can run ten thousand market
-          histories instead of the single one reality offers. What's learned in rehearsal
-          gives Pythia her head start on the real thing; what Pythia sees in the wild
-          flows back to make the rehearsals sharper.
+          Because everything the platform produces is readable by construction, the AI's suggestions
+          arrive as changes you can inspect and reason about — before/after diffs, plain-language
+          rules, and per-signal attribution — never an opaque nudge you're asked to trust.
         </p>
       </div>
     </div>
+  </div>
+</section>
+
+<section class="pillars" id="kestrel" style="padding-top:0">
+  <div class="wrap">
+    <div class="section-label">The Kestrel engine</div>
+    <h2>Where the strategies come from — and why they hold up</h2>
+    <div class="meander"></div>
+    <p class="lead">
+      Kestrel is the simulation, evolution and distillation engine inside Mederos. It's one part of the
+      platform — but it's the part that lets the app manufacture strategies that aren't just curve-fit
+      to the past. It works by studying the thing that <em>casts</em> the price, not just the price
+      itself.
+    </p>
+    <div class="pillar-grid">
+      <div class="pillar">
+        <h3>Murmuration — the inward eye</h3>
+        <p>
+          A synthetic market populated by thousands of distinct participants — patient institutions,
+          restless speculators, liquidity providers, opportunists — moving as one emergent flock the
+          way real crowds do. The hallmarks of live markets surface on their own: rare violent moves,
+          calm that turns to storm, crowding and retreat. Nobody scripts them.
+        </p>
+      </div>
+      <div class="pillar">
+        <h3>Lodestar — the outward eye</h3>
+        <p>
+          Lodestar reads the real tape and answers the only question that matters: <em>what is this
+          worth, and how sure are we?</em> Never a single number — a fair-value estimate wrapped in a
+          confidence range that's been checked against reality. When Lodestar says 90%, we've verified
+          it means about 90%.
+        </p>
+      </div>
+      <div class="pillar">
+        <h3>Distill — the sanity check</h3>
+        <p>
+          Kestrel distills readable strategies out of what its simulated traders learn — then it audits
+          them. It re-examines whether the agents leaned on logic that could never actually obtain in a
+          real market, and throws out what wouldn't survive contact with reality. When we distill a
+          trader whose logic we planted, the engine recovers it at <strong>0.97 fidelity</strong> vs.
+          0.51 for a method blind to market structure.
+        </p>
+      </div>
+    </div>
+    <p class="lead" style="margin-top:32px">
+      Everything Kestrel produces lands in the app as an ordinary MuseScript strategy — one you can
+      read, edit, ensemble and export. The engine is the R&amp;D core; the app is where you actually
+      wield what it finds.
+    </p>
   </div>
 </section>
 
 <section class="map-section" id="map">
   <div class="wrap-wide">
     <div class="section-label">System map</div>
-    <h2>From market reality to products — every box is clickable</h2>
+    <h2>The whole stack, from market reality to your account</h2>
     <div class="meander"></div>
     <p class="lead">
-      The full stack at a glance. Hover any node to trace what feeds it. Click to pin
-      details. Every box carries a maturity light — green means it has already survived
-      honest testing; gray means the upside is still ahead of us, by design.
+      The full platform at a glance — engine, language, app, and execution. Hover any node to trace
+      what feeds it. Every box carries a maturity light: green means it has already survived honest
+      testing; gray means the upside is still ahead of us, by design.
     </p>
     <div class="map-frame-wrap">
-      <iframe src="system-map.html" title="The Kestrel Engine — interactive system map" loading="lazy"></iframe>
+      <iframe src="system-map.html" title="Mederos — interactive system map" loading="lazy"></iframe>
       <div class="map-caption">
         <span>Interactive · drag nodes · scroll to zoom · toggle groups in the legend</span>
         <a href="system-map.html" target="_blank" rel="noopener">Open full screen →</a>
@@ -278,86 +424,16 @@
   </div>
 </section>
 
-<section class="honesty" id="discipline">
-  <div class="wrap">
-    <div class="section-label">Discipline</div>
-    <h2>What our green lights actually mean</h2>
-    <div class="meander"></div>
-    <p class="lead">
-      Anyone can show you a backtest. We built the lie-detector before we built the product —
-      so that when something on this page is marked proven, that word is carrying real weight.
-    </p>
-
-    <div class="maturity-bar">
-      <span style="width:34%;background:var(--long)" title="Proven"></span>
-      <span style="width:34%;background:var(--signal)" title="Working"></span>
-      <span style="width:6%;background:var(--heat)" title="Early"></span>
-      <span style="width:26%;background:var(--muted)" title="Planned"></span>
-    </div>
-    <div class="maturity-legend">
-      <span><span class="status-dot proven"></span> Proven — survived pre-declared tests</span>
-      <span><span class="status-dot working"></span> Working — built and running</span>
-      <span><span class="status-dot early"></span> Early — promising, still being validated</span>
-      <span><span class="status-dot planned"></span> Planned — designed, ahead of us</span>
-    </div>
-
-    <div class="honesty-grid">
-      <div class="honesty-card proven">
-        <h3><span class="status-dot proven"></span> The test comes before the claim</h3>
-        <p>
-          Every hypothesis gets its pass/fail bar written down <em>before</em> the experiment
-          runs — so a result can't be reinterpreted into a success after the fact.
-          Earnings events, for example, earned their place in the engine by clearing a
-          pre-declared statistical bar on real data; ideas that sound just as plausible
-          but didn't clear it were left out. The engine contains only what survived.
-        </p>
-      </div>
-      <div class="honesty-card proven">
-        <h3><span class="status-dot proven"></span> A forward log, not just a backtest</h3>
-        <p>
-          The app keeps a live scoreboard of its own recommendations: every pick is logged the moment
-          it's shown and scored against what actually happened — measured against the market, so a
-          rising tide can't flatter it. A backtest can be re-tuned after the fact; a forward log
-          can't. When a signal fails against reality, it's retired in writing rather than quietly
-          re-framed — which is exactly why the ones that survive are worth backing.
-        </p>
-      </div>
-      <div class="honesty-card proven">
-        <h3><span class="status-dot proven"></span> Leakage is impossible by construction</h3>
-        <p>
-          The most common way quantitative research lies is subtle: information from the
-          future seeps into the past, and a strategy looks brilliant right up until it meets
-          reality. Kestrel's data foundation is built so that this physically cannot happen —
-          every model, at every moment, sees only what was knowable at that moment. It isn't
-          a policy we follow; it's a property of the architecture.
-        </p>
-      </div>
-      <div class="honesty-card proven">
-        <h3><span class="status-dot proven"></span> The flagship cleared the bar</h3>
-        <p>
-          Kestrel's core strategy ranks a whole basket by how far each name sits from fair value
-          and leans toward the bargains. In a pre-registered walk-forward on a decade of
-          S&amp;P 100 history — full costs on every trade, past and future kept strictly apart,
-          measured against a benchmark harder to beat than most admit — it delivered a mean
-          out-of-sample Sharpe near three, beat that benchmark in every fold, and reproduced when
-          re-fit from scratch. We still reserve <em>proven</em> for research validation, not a live
-          track record, and we show exactly where it bends. <a href="#evidence">See the evidence →</a>
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <section class="evidence" id="evidence">
   <div class="wrap">
     <div class="section-label">The evidence</div>
-    <h2>The flagship cleared its bar</h2>
+    <h2>The flagship strategy cleared its bar</h2>
     <div class="meander"></div>
     <p class="lead">
-      For a long time this section would have been a promise. It isn't anymore. Kestrel's fair-value
-      ranking strategy was put through a pre-registered walk-forward on a decade of real S&amp;P 100
-      history — full trading costs charged on every trade, past and future kept strictly apart — and
-      it held.
+      A platform is only as good as the strategies it can actually manufacture. So the flagship — a
+      fair-value ranking strategy — was put through a pre-registered walk-forward on a decade of real
+      S&amp;P 100 history, full trading costs charged on every trade, past and future kept strictly
+      apart. It held.
     </p>
 
     <div class="bench-board">
@@ -396,199 +472,221 @@
       <div class="bench-note">
         <h3>What made the difference</h3>
         <p>
-          Two things the engine already knew how to do. A second, independently-trained read of each
-          asset lifted the signal measurably — nearly for free, because Kestrel was already computing
-          it. And the way the strategy turns its rankings into an actual book — trading a name only
-          when it moves enough to be worth the cost — is what let a real edge survive the toll that
-          quietly kills most of them. That toll, charged honestly, is the difference between a
-          backtest and the truth.
+          A second, independently-trained read of each asset lifted the signal measurably — nearly for
+          free, because the engine was already computing it. And the way the strategy turns rankings
+          into an actual book — trading a name only when it moves enough to be worth the cost — is what
+          let a real edge survive the toll that quietly kills most of them. That toll, charged
+          honestly, is the difference between a backtest and the truth.
         </p>
       </div>
       <div class="bench-note caveat">
         <h3>What we're not claiming</h3>
         <p>
           This is walk-forward research, not a live track record. Stress-tested into the 2022 bear
-          market the edge weakens — one window's signal even inverts — so it is regime-sensitive, not
-          a law of nature. And every failed cousin is on the record beside it: daily long/short books
-          over relationship graphs that couldn't clear costs, retired in writing. The number above is
-          the configuration that <em>did</em>.
+          market the edge weakens — one window's signal even inverts — so it's regime-sensitive, not a
+          law of nature. And every failed cousin is on the record beside it: books that couldn't clear
+          costs, retired in writing. The number above is the configuration that <em>did</em>.
         </p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="philosophy">
+<section class="honesty" id="discipline">
   <div class="wrap">
-    <blockquote>
-      What's proven is rigorous and explainable.
-      <strong>Most of the upside is still unpriced</strong> —
-      and we'd rather show you exactly where the frontier is than pretend we're past it.
-    </blockquote>
+    <div class="section-label">Discipline</div>
+    <h2>What our green lights actually mean</h2>
+    <div class="meander"></div>
+    <p class="lead">
+      Anyone can show you a backtest. We built the lie-detector before we built the product — so that
+      when something here is marked proven, that word is carrying real weight.
+    </p>
+
+    <div class="maturity-bar">
+      <span style="width:34%;background:var(--long)" title="Proven"></span>
+      <span style="width:34%;background:var(--signal)" title="Working"></span>
+      <span style="width:6%;background:var(--heat)" title="Early"></span>
+      <span style="width:26%;background:var(--muted)" title="Planned"></span>
+    </div>
+    <div class="maturity-legend">
+      <span><span class="status-dot proven"></span> Proven — survived pre-declared tests</span>
+      <span><span class="status-dot working"></span> Working — built and running</span>
+      <span><span class="status-dot early"></span> Early — promising, still being validated</span>
+      <span><span class="status-dot planned"></span> Planned — designed, ahead of us</span>
+    </div>
+
+    <div class="honesty-grid">
+      <div class="honesty-card proven">
+        <h3><span class="status-dot proven"></span> The test comes before the claim</h3>
+        <p>
+          Every hypothesis gets its pass/fail bar written down <em>before</em> the experiment runs — so
+          a result can't be reinterpreted into a success after the fact. The engine contains only what
+          survived; ideas that sounded just as plausible but didn't clear the bar were left out.
+        </p>
+      </div>
+      <div class="honesty-card proven">
+        <h3><span class="status-dot proven"></span> A forward log, not just a backtest</h3>
+        <p>
+          The app keeps a live scoreboard of its own recommendations: every pick is logged the moment
+          it's shown and scored against what actually happened, measured against the market. A backtest
+          can be re-tuned after the fact; a forward log can't. Failures are retired in writing.
+        </p>
+      </div>
+      <div class="honesty-card proven">
+        <h3><span class="status-dot proven"></span> Leakage is impossible by construction</h3>
+        <p>
+          The most common way quant research lies is subtle: information from the future seeps into the
+          past. Mederos's data foundation is built so this physically cannot happen — every model, at
+          every moment, sees only what was knowable then. It isn't a policy; it's a property of the
+          architecture.
+        </p>
+      </div>
+      <div class="honesty-card proven">
+        <h3><span class="status-dot proven"></span> Economic sanity, not just statistics</h3>
+        <p>
+          A strategy can pass every statistical test and still rest on behavior no real participant
+          would ever exhibit. Kestrel audits its distilled strategies for exactly that — economic
+          coherence — and discards logic that would never obtain in a live market. Passing the numbers
+          isn't enough; it has to make sense.
+        </p>
+      </div>
+    </div>
   </div>
 </section>
 
-<section class="pillars" id="flywheel">
+<section class="pillars" id="economy">
   <div class="wrap">
-    <div class="section-label">The flywheel</div>
-    <h2>The product and the R&amp;D engine are the same thing</h2>
+    <div class="section-label">The game</div>
+    <h2>Playing it makes it — and everyone — better</h2>
     <div class="meander"></div>
     <p class="lead">
-      Kestrel lives inside a mobile app, and the app is more than a way to look at the engine — it's
-      where the engine gets better. People explore markets, build and distill strategies, and put
-      them to work through their own linked accounts. Every piece of that work generates validated,
-      explainable R&amp;D that sharpens the engine for everyone. The person using the app and the engine
-      getting smarter are the same loop — and nothing is extracted from the user to close it.
+      The game layer isn't decoration. Exploring markets, evolving and distilling strategies, refining
+      them in Forge — the core loop of <em>playing</em> Mederos is the same loop that produces
+      validated, explainable R&amp;D. The person having fun and the engine getting smarter are one
+      motion, and nothing is extracted from the user to close it.
     </p>
     <div class="pillar-grid">
       <div class="pillar">
-        <div class="icon">→ EXPLORE &amp; DISTILL</div>
-        <h3>Using the app produces intelligence</h3>
+        <div class="icon">→ PLAY IS THE WORK</div>
+        <h3>Progression with a point</h3>
         <p>
-          The core activity — spinning up simulations, distilling readable strategies, refining them
-          in Forge — <em>is</em> the R&amp;D. There's no separate research team feeding the product;
-          the product's own use is the research. Every distillation that clears the honest gate is a
-          permanent asset that makes the next one easier to find.
+          Spin up simulations, distill readable strategies, tune them, ensemble them — and level up as
+          you go. Every distillation that clears the honest gate is a permanent asset in your
+          collection and a rung the whole engine climbs.
         </p>
       </div>
       <div class="pillar">
-        <div class="icon">→ LINK &amp; FOLLOW</div>
-        <h3>Your account follows the strategy</h3>
+        <div class="icon">→ THREE CURRENCIES</div>
+        <h3>Intelligence is the one that counts</h3>
         <p>
-          Link a brokerage account and it tracks the strategy's book automatically — the app places
-          the trades to match, inside a hard risk envelope you set (budget, per-name caps, a kill
-          switch). This is built and running today, not a roadmap item: the bridge from a validated,
-          simulated strategy to real positions in your own account is part of the ecosystem now.
+          Two in-app currencies fund the work — but their only bridge to real value is producing a
+          validated, executable strategy. That makes <em>intelligence</em> the currency that actually
+          matters, and it's earned, not bought.
         </p>
       </div>
       <div class="pillar">
         <div class="icon">→ IT COMPOUNDS</div>
         <h3>Use becomes a moat</h3>
         <p>
-          Intelligence is the currency that matters: usage credits fund the work, but their only
-          bridge to real value is producing a validated, executable strategy. So every hour spent in
-          the app compounds the engine's edge and, along the way, surfaces the people who are
-          unusually good at it. Product, R&amp;D, and recruiting, out of a single loop.
+          Every hour spent in the app compounds the engine's edge and surfaces the people who are
+          unusually good at this. Product, R&amp;D, and recruiting fall out of a single loop — and the
+          library of proven strategies only grows.
         </p>
       </div>
     </div>
-  </div>
-</section>
-
-<section class="pillars" id="horizon">
-  <div class="wrap">
-    <div class="section-label">The horizon</div>
-    <h2>Markets are the first surface, not the last</h2>
-    <div class="meander"></div>
-    <p class="lead">
-      What Kestrel actually learns is more general than any one market: how a population of
-      decision-makers, each acting on partial information, drives a system toward an outcome.
-      Exchange order books are simply the cleanest place to begin. Feed the same engine
-      richer inputs and the world it can model — and price — widens dramatically. Every new
-      kind of data isn't a new product to build from scratch; it's a new sense for an engine
-      that already knows what to do with it.
-    </p>
-    <div class="pillar-grid">
-      <div class="pillar">
-        <div class="icon">→ THE HUMAN GRAPH</div>
-        <h3>Who moves whom</h3>
-        <p>
-          Behind every price is a web of people — the relationships, allegiances, and
-          overlapping histories among the decision-makers who steer companies and capital.
-          Mapped as structure the engine can read, that web becomes a modelable force,
-          not background noise.
-        </p>
-      </div>
-      <div class="pillar">
-        <div class="icon">→ LANGUAGE AT SCALE</div>
-        <h3>Information, the moment it's information</h3>
-        <p>
-          The world announces itself in words first — filings, headlines, narrative,
-          sentiment. An engine that ingests that flow as it breaks reacts to what's changed
-          the instant it changes, rather than waiting for it to show up in the tape.
-        </p>
-      </div>
-      <div class="pillar">
-        <div class="icon">→ FRONTIER REASONING</div>
-        <h3>The best models, in the loop</h3>
-        <p>
-          The most capable reasoning systems available, integrated as first-class
-          participants — reading, connecting, and forming hypotheses alongside the
-          simulation. Kestrel is built to put their judgement to work inside the engine,
-          not merely beside it.
-        </p>
-      </div>
-    </div>
-    <p class="lead" style="margin-top:36px">
-      Each of these is another current feeding the same river: one cohesive engine that turns
-      more of the world into something it can simulate, anticipate, and act on. Markets were
-      the proving ground. The ambition is a general capital engine — and its foundation is
-      deliberately built to grow into exactly that.
-    </p>
   </div>
 </section>
 
 <section class="deliverables" id="products">
   <div class="wrap">
     <div class="section-label">Where it's going</div>
-    <h2>One engine, several products</h2>
+    <h2>One platform, many surfaces</h2>
     <div class="meander"></div>
     <p class="lead">
-      Kestrel wasn't built for a single trade. The same fitted engine ranks assets by fair value,
-      powers the tools people build strategies with, and executes those strategies through their own
-      linked accounts.
+      Mederos wasn't built for a single trade. The same fitted engine and language power the tools you
+      build strategies with, the terminal you run them in, and the accounts they execute through.
     </p>
-    <div class="product-feature">
-      <img class="product-shot" src="img/forge.png"
-        alt="Forge — a trading rule drawn as a node graph on a phone, with a live held-out score" loading="lazy">
-      <div class="product-feature-copy">
-        <div class="section-label">Forge · on device</div>
-        <h3>A strategy you can read, in your hand</h3>
+    <div class="deliver-grid">
+      <div class="deliver-card">
+        <div class="status live">Working · on device</div>
+        <h3>The field app</h3>
         <p>
-          A trading rule becomes a graph: features and constants flow into comparisons, comparisons
-          into AND/OR logic, and everything into a single TRADE SIGNAL. Drag to build it by hand, or
-          ask the on-device model to improve it and accept the change as a before/after diff. Every
-          edit is re-scored on held-out data with honest costs included — the same engine as the
-          desktop stack, running on the phone.
+          Phone-native and running today: a swipe-through ranking feed, live model fitting, an
+          on-device rule distiller, MuseScript notebooks, and <strong>Forge</strong> — all in your
+          pocket, same engine as the desktop stack, no server required.
         </p>
-        <p class="product-feature-note">Actual on-device UI · the fundamentals-gated momentum rule.</p>
       </div>
-    </div>
-
-    <div class="muse-block">
-      <div class="section-label">Under the hood · proprietary</div>
-      <h3>MuseScript — a scripting language built for speed, not just syntax</h3>
-      <p>
-        Every rule Forge draws as a graph is, underneath, a MuseScript program — a proprietary
-        scripting language we built for algorithmic trading logic, with impressive performance
-        baked into its architecture rather than bolted on after. The same source compiles to four
-        different execution targets — JavaScript, Python, numba-JIT, and native WebAssembly —
-        instead of being locked to one interpreter.
-      </p>
-      <div class="muse-stats">
-        <span class="bench-tag">Compiles to JS / Python / numba / WASM from one source</span>
-        <span class="bench-tag">Cross-runtime gate: identical result on all 4 hosts, max delta 0</span>
-        <span class="bench-tag">Compiled paths ~3–5ms vs. ~187s interpreted, same logic</span>
-        <span class="bench-tag">840 tests green across the JS and Python builds</span>
+      <div class="deliver-card">
+        <div class="status live">Working</div>
+        <h3>The desktop workstation</h3>
+        <p>
+          A multi-pane terminal with WebGL charting, a forkable indicator suite, portfolio, Forge,
+          notebooks, and device-mesh sync. The full authoring-to-execution surface, on the same engine
+          as the phone.
+        </p>
       </div>
-      <p class="muse-vs">
-        <strong>Versus PineScript:</strong> Pine runs only inside TradingView's own sandboxed
-        interpreter — there's no ahead-of-time compile step and no alternate backend to reach for
-        when a script needs to move fast. We haven't run a published head-to-head, because Pine's
-        interpreter isn't something you can benchmark outside its own platform — but that's exactly
-        the architectural gap that matters: MuseScript strategies compile straight to native
-        execution paths instead of staying interpreted, which is where the numbers above come from.
-      </p>
+      <div class="deliver-card">
+        <div class="status live">Working</div>
+        <h3>Linked-account execution</h3>
+        <p>
+          Connect a brokerage and it follows your strategy's book automatically, inside a hard risk
+          envelope you control. Multi-brokerage, across stocks, crypto and forex — built and running.
+        </p>
+      </div>
+      <div class="deliver-card">
+        <div class="status live">Validated in research</div>
+        <h3>Fair-value ranking</h3>
+        <p>
+          The flagship strategy: sort a basket from most underpriced to most overpriced and tilt toward
+          the bargains. Clears a pre-registered walk-forward under full costs — mean out-of-sample
+          Sharpe near three, beating an equal-weight basket in every fold.
+        </p>
+      </div>
+      <div class="deliver-card">
+        <div class="status live">Working · early</div>
+        <h3>AutoPilot</h3>
+        <p>
+          Autonomous research and iteration: an objective in, a research → build → validate → refine
+          loop out, all gated by honest costs. It proposes; you review and commit. Running today, still
+          being sharpened.
+        </p>
+      </div>
+      <div class="deliver-card">
+        <div class="status future">Planned</div>
+        <h3>Argus — the operator console</h3>
+        <p>
+          Named for the watchman with a hundred eyes: a daily cockpit showing picks, proposed trades,
+          and model health, with a human approving every action before it executes. Preview and
+          session-playback exist today; the full supervised loop is designed.
+        </p>
+      </div>
+      <div class="deliver-card">
+        <div class="status soon">Vision · first piece live</div>
+        <h3>The strategy marketplace</h3>
+        <p>
+          A place to generate, inspect, and share strategies that explain themselves — because
+          everything Mederos produces is readable by design. The first real pieces are already live:
+          Forge, the notebooks, and a run-playback viewer.
+        </p>
+      </div>
+      <div class="deliver-card">
+        <div class="status future">Planned</div>
+        <h3>The compounder</h3>
+        <p>
+          Fair-value ranking deployed where trading is cheap enough for a steady edge to compound
+          undisturbed. Deliberately sequenced after validation — it launches when the edge is proven,
+          not before.
+        </p>
+      </div>
     </div>
 
     <div class="demo" id="demo">
       <div class="section-label">Try it · in your browser, right now</div>
       <h3>Not a screenshot — pick a strategy, hit run</h3>
       <p class="demo-intro">
-        This is the exact same engine the app ships, running client-side: parse, compile, and
-        backtest, entirely in this page. Nothing is sent to a server and nothing here is
-        pre-baked — the chart, the trades, and the numbers below are computed live, right now, by
-        your browser.
+        This is the exact same MuseScript engine the app ships, running client-side: parse, compile,
+        and backtest, entirely in this page. Nothing is sent to a server and nothing here is pre-baked
+        — the chart, the trades, and the numbers below are computed live, right now, by your browser.
       </p>
 
       <div class="demo-toolbar">
@@ -608,7 +706,11 @@
       <div class="demo-tags" id="demo-tags"></div>
 
       <div class="demo-grid">
-        <pre class="demo-code-pane"><code id="demo-code"></code></pre>
+        <div class="demo-editor">
+          <div class="demo-editor-hint">editable · change the code and hit Run ▶</div>
+          <pre class="demo-code-pane demo-code-hl" aria-hidden="true"><code id="demo-code"></code></pre>
+          <textarea id="demo-input" class="demo-code-input" spellcheck="false" autocomplete="off" autocapitalize="off" autocorrect="off" wrap="soft" aria-label="MuseScript source — editable"></textarea>
+        </div>
         <div class="demo-chart-pane">
           <canvas id="demo-canvas"></canvas>
           <div class="demo-legend" id="demo-legend"></div>
@@ -623,76 +725,56 @@
         </div>
       </div>
     </div>
+  </div>
+</section>
 
-    <div class="deliver-grid">
-      <div class="deliver-card">
-        <div class="status live">Working</div>
-        <h3>Linked-account execution</h3>
+<section class="philosophy">
+  <div class="wrap">
+    <blockquote>
+      What's proven is rigorous and explainable.
+      <strong>Most of the upside is still unpriced</strong> —
+      and we'd rather show you exactly where the frontier is than pretend we're past it.
+    </blockquote>
+  </div>
+</section>
+
+<section class="pillars" id="horizon">
+  <div class="wrap">
+    <div class="section-label">The horizon</div>
+    <h2>Markets are the first surface, not the last</h2>
+    <div class="meander"></div>
+    <p class="lead">
+      What the engine actually learns is more general than any one market: how a population of
+      decision-makers, each acting on partial information, drives a system toward an outcome. Exchange
+      order books are simply the cleanest place to begin. Feed the same engine richer inputs and the
+      world it can model — and price — widens dramatically.
+    </p>
+    <div class="pillar-grid">
+      <div class="pillar">
+        <div class="icon">→ THE HUMAN GRAPH</div>
+        <h3>Who moves whom</h3>
         <p>
-          Connect a brokerage account and it follows the strategy's book automatically — the app
-          places the trades to match, inside a hard risk envelope you control: total budget, per-name
-          caps, and a kill switch. Kraken and Robinhood links are built and running today. This is the
-          bridge from a validated, simulated strategy to real positions in your own account.
+          Behind every price is a web of people — the relationships, allegiances, and overlapping
+          histories among the decision-makers who steer companies and capital. Mapped as structure the
+          engine can read, that web becomes a modelable force, not background noise.
         </p>
       </div>
-      <div class="deliver-card">
-        <div class="status live">Validated in research</div>
-        <h3>Fair-value ranking</h3>
+      <div class="pillar">
+        <div class="icon">→ LANGUAGE AT SCALE</div>
+        <h3>Information, the moment it's information</h3>
         <p>
-          The flagship: sort a basket from most underpriced to most overpriced and tilt toward the
-          bargains. It now clears a pre-registered walk-forward under full costs — mean out-of-sample
-          Sharpe near three, beating an equal-weight basket in every fold. Kestrel also learns how to
-          weigh its own signals, so the strategy sharpens as the engine does.
+          The world announces itself in words first — filings, headlines, narrative, sentiment. An
+          engine that ingests that flow as it breaks reacts to what's changed the instant it changes,
+          rather than waiting for it to show up in the tape.
         </p>
       </div>
-      <div class="deliver-card">
-        <div class="status live">Working · on device</div>
-        <h3>Forge — the strategy workbench</h3>
+      <div class="pillar">
+        <div class="icon">→ FRONTIER REASONING</div>
+        <h3>The best models, in the loop</h3>
         <p>
-          A visual editor where a trading rule is a graph you build and understand — drag nodes by
-          hand, or ask the on-device model to improve a rule and watch the change arrive as a
-          before/after diff you accept or reject. Every edit is scored on held-out data with honest
-          costs included; custom indicators are first-class and reusable. Readable by design, all
-          the way down.
-        </p>
-      </div>
-      <div class="deliver-card">
-        <div class="status future">Planned</div>
-        <h3>The compounder</h3>
-        <p>
-          Fair-value ranking deployed where trading is cheap enough for a steady edge to
-          compound undisturbed. Deliberately sequenced after validation — the product
-          launches when the edge is proven, not before.
-        </p>
-      </div>
-      <div class="deliver-card">
-        <div class="status live">Working · prototype</div>
-        <h3>The field app</h3>
-        <p>
-          A phone-native prototype already on device: a swipe-through ranking feed, live model
-          fitting, an on-device rule distiller, and <strong>Forge</strong> — the strategy workbench
-          above — all running in your pocket. The same engine as the Python stack, no server
-          required.
-        </p>
-      </div>
-      <div class="deliver-card">
-        <div class="status future">Planned</div>
-        <h3>Argus — the operator console</h3>
-        <p>
-          Named for the watchman with a hundred eyes: a daily cockpit showing picks,
-          proposed trades, and model health, with a human approving every action before
-          it executes. A static console preview and session-playback harness exist today;
-          the full supervised deployment loop is designed but not shipped.
-        </p>
-      </div>
-      <div class="deliver-card">
-        <div class="status soon">Vision · first piece live</div>
-        <h3>Kestrel Studio</h3>
-        <p>
-          A studio where people generate, inspect, and share strategies that explain themselves —
-          because everything Kestrel produces is readable by design. Its first real piece is already
-          live: <strong>Forge</strong>, the on-device strategy workbench. A run-playback viewer
-          (<strong>umarketsim-viz</strong>) and a strategy marketplace round out the picture.
+          The most capable reasoning systems available — including the local ones you run yourself —
+          integrated as first-class participants, reading, connecting, and forming hypotheses alongside
+          the simulation. Their judgement works inside the engine, not merely beside it.
         </p>
       </div>
     </div>
@@ -702,10 +784,10 @@
 <section class="contact" id="contact">
   <div class="wrap">
     <div class="contact-box">
-      <h2>Curious about Kestrel?</h2>
+      <h2>Curious about Mederos?</h2>
       <p>
-        Mederos is pre-launch. If what you've seen here makes you want to look closer —
-        at the engine, the data, or where this is headed — we'd like to hear from you.
+        Mederos is pre-launch. If what you've seen here makes you want to look closer — at the app,
+        the engine, the language, or where this is headed — we'd like to hear from you.
       </p>
       <a class="email" href="mailto:aril.app.prelaunch@gmail.com">aril.app.prelaunch@gmail.com</a>
     </div>
@@ -713,7 +795,7 @@
 </section>
 
 <footer>
-  <p>Mederos · The Kestrel Engine</p>
+  <p>Mederos · algorithmic trading, gamified</p>
 </footer>
 
 </body>

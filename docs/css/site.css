@@ -604,6 +604,58 @@ h3 { font-size: 1.15rem; margin: 0 0 8px; }
   max-height: 380px;
 }
 .demo-code-pane code { white-space: pre-wrap; overflow-wrap: anywhere; }
+
+/* editable overlay: transparent textarea sits exactly atop the highlighted
+   <pre>, so you type real MuseScript and see it syntax-lit live. Every metric
+   that affects text layout (font, size, line-height, padding, border width,
+   wrapping) MUST match between .demo-code-hl and .demo-code-input or the caret
+   drifts off the glyphs. */
+.demo-editor { position: relative; }
+.demo-editor-hint {
+  position: absolute;
+  top: 8px; right: 12px;
+  z-index: 3;
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  opacity: 0.7;
+  pointer-events: none;
+}
+.demo-editor .demo-code-hl {
+  margin: 0;
+  min-height: 300px;
+  max-height: none;
+  overflow: visible;
+  pointer-events: none;
+}
+.demo-code-input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 18px 16px;                 /* match .demo-code-pane */
+  border: 1px solid transparent;      /* match .demo-code-pane 1px border */
+  border-radius: 10px;
+  background: transparent;
+  color: transparent;
+  caret-color: var(--signal);
+  -webkit-text-fill-color: transparent;
+  font-family: var(--mono);           /* match */
+  font-size: 0.78rem;                 /* match */
+  line-height: 1.65;                  /* match */
+  white-space: pre-wrap;              /* match */
+  overflow-wrap: anywhere;            /* match */
+  tab-size: 2;
+  resize: none;
+  overflow: hidden;
+  outline: none;
+}
+.demo-code-input:focus { border-color: rgba(199, 139, 245, 0.45); }
+.demo-code-input::selection { background: rgba(199, 139, 245, 0.28); }
+
 .tok-kw { color: var(--tyrian-glow); }
 .tok-fn { color: var(--signal); }
 .tok-str { color: var(--heat); }
