@@ -19,6 +19,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/site.css">
+  <script type="module" src="js/hero-gl.js"></script>
   <script src="js/demo.js" defer></script>
 </head>
 <body>
@@ -40,39 +41,50 @@
 </nav>
 
 <section class="hero" id="top">
-  <div class="wrap">
-    <img class="hero-mark" src="logo-512.png" alt="Mederos">
-    <div class="badge-pre">Pre-launch · 2026</div>
-    <h1>Serious algorithmic trading,<br><span class="accent">gamified</span>.</h1>
-    <p class="tagline">
-      Mederos is a cross-platform trading platform where you <strong>evolve</strong> strategies,
-      <strong>write</strong> them, ensemble them, and run them live — across stocks, crypto and forex,
-      through your own linked brokerages. Every strategy is readable, editable, and exportable. It all
-      runs on MuseScript, a trading language we built from scratch, with on-device AI and autonomous
-      research baked in. And it's engineered so the strategies you ship actually hold up.
-    </p>
-    <div class="hero-stats">
-      <div class="stat">
-        <span class="num">One</span>
-        <span class="lbl">Account · phone, desktop &amp; web, meshed as one</span>
-      </div>
-      <div class="stat">
-        <span class="num">3 asset classes</span>
-        <span class="lbl">Stocks · crypto · forex · multi-brokerage</span>
-      </div>
-      <div class="stat">
-        <span class="num">Evolve <em>or</em> author</span>
-        <span class="lbl">Both paths, one readable strategy format</span>
-      </div>
-      <div class="stat">
-        <span class="num">Your AI</span>
-        <span class="lbl">Run your own local models, in the loop</span>
+  <div class="hero-bg" id="hero-bg" aria-hidden="true"></div>
+  <div class="hero-scrim" aria-hidden="true"></div>
+  <div class="wrap-wide hero-inner">
+    <div class="hero-copy">
+      <a class="hero-brand" href="#top"><img class="hero-mark" src="logo-512.png" alt="Mederos"></a>
+      <div class="badge-pre">Pre-launch · 2026</div>
+      <h1>A quant terminal,<br><span class="accent">everywhere</span>.</h1>
+      <p class="tagline">
+        The full desk — live charting, multi-brokerage execution, an evolutionary strategy engine —
+        on every screen you own. Then we took the best idea in gaming: <strong>free to start,
+        addictive to master</strong>. The depth costs nothing up front. The edge is the game.
+      </p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#app">See the app ↓</a>
+        <a class="btn btn-ghost" href="#demo">Run a live strategy</a>
+        <a class="btn btn-ghost" href="#evidence">See the evidence</a>
       </div>
     </div>
-    <div class="hero-cta">
-      <a class="btn btn-primary" href="#app">See the app ↓</a>
-      <a class="btn btn-ghost" href="#demo">Run a live strategy</a>
-      <a class="btn btn-ghost" href="#evidence">See the evidence</a>
+
+    <div class="hero-cards">
+      <div class="hero-card">
+        <div class="k">Quant terminal, everywhere</div>
+        <p>
+          Live charting, multi-brokerage execution, and the full strategy workbench — on your phone,
+          your laptop, and the web, meshed into one account. Start a fit on the couch; it's running on
+          your desk before you sit down.
+        </p>
+      </div>
+      <div class="hero-card">
+        <div class="k">Free-to-play, for real markets</div>
+        <p>
+          The best idea gaming ever had: the depth is free to start. No paywall on the tools — just
+          progression, currencies, and a strategy collection you grow by playing. The grind isn't
+          busywork; it's R&amp;D that compounds into real edge.
+        </p>
+      </div>
+      <div class="hero-card">
+        <div class="k">Dead serious underneath</div>
+        <p>
+          Under the game layer sits a trading language of our own, an evolutionary engine, and a
+          validation gate that retires anything that doesn't hold up. Fun to play. Engineered to
+          trade.
+        </p>
+      </div>
     </div>
   </div>
 </section>
@@ -181,7 +193,8 @@
         <span class="bench-tag">Compiles to JS / Python / numba / WASM from one source</span>
         <span class="bench-tag">Cross-runtime gate: identical result on all 4 hosts, max delta 0</span>
         <span class="bench-tag">Compiled paths in milliseconds vs. seconds interpreted, same logic</span>
-        <span class="bench-tag">840+ tests green across the JS and Python builds</span>
+        <span class="bench-tag">58,000+ test assertions green, zero failures</span>
+        <span class="bench-tag">442+ technical indicators, ported and battle-tested</span>
       </div>
       <p class="muse-vs">
         <strong>Versus PineScript:</strong> Pine runs only inside TradingView's own sandboxed
@@ -286,9 +299,9 @@
         <div class="icon">CHARTING</div>
         <h3>WebGL charting, indicators you can fork</h3>
         <p>
-          A hand-built GPU charting engine renders deep history smoothly, with an indicator library
-          where every indicator is itself a MuseScript program — viewable, forkable, and editable
-          in-app. See the math, then change it.
+          A hand-built GPU charting engine renders deep history smoothly, backed by <strong>442+
+          ported technical indicators</strong> — every one of them itself a MuseScript program,
+          viewable, forkable, and editable in-app. See the math, then change it.
         </p>
       </div>
       <div class="pillar">
@@ -682,11 +695,13 @@
 
     <div class="demo" id="demo">
       <div class="section-label">Try it · in your browser, right now</div>
-      <h3>Not a screenshot — pick a strategy, hit run</h3>
+      <h3>Not a screenshot — pick a strategy, edit it, hit run</h3>
       <p class="demo-intro">
         This is the exact same MuseScript engine the app ships, running client-side: parse, compile,
-        and backtest, entirely in this page. Nothing is sent to a server and nothing here is pre-baked
-        — the chart, the trades, and the numbers below are computed live, right now, by your browser.
+        and backtest, entirely in this page. The code pane is a real editor — change a threshold,
+        rewrite the logic, break it on purpose — then run it. Nothing is sent to a server and nothing
+        here is pre-baked: the chart, the trades, and the numbers below are computed live, right now,
+        by your browser.
       </p>
 
       <div class="demo-toolbar">
